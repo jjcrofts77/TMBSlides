@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+ <div class="reveal">
+    <div class="slides">
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<section>
+		 <h1 class="r-fit-text">Topics in Mathematical Biology</h1>
+		<h2>Lecture 2</h2>
+		<p style="font-size:48px; color: #00FF00">Jonathan Crofts</p>        
+		<p style="color: #00FF00">Nottingham Trent University</p>
+    </section>
+	  
+	<!-- ################################################### -->
+    <!-- ################################################### -->				
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L2</h1>
+		<br>
+		<ul>
+			<span style="color: #00FF00"> <li>Network basics</li></span>
+			<br>
+			<li>Network traversals: walks and paths</li>			
+		</ul>		
+	</section>	
+
+	<section  align="left">
+		<h2>Network basics</h2>					
+				
+		<p>This week we shall review some basic network concepts (as seen last week) from a mathematical perspective</p>
+					
+		<span class="fragment fade-in">
+		<p>A  <em style="color:#00FF00">network</em> is a pair of sets $N = (V, E)$ such that</p>
+		\[
+		 V = \left\{v_1, v_2, \ldots, v_n\right\} \qquad\qquad  \color{red}{\boxed{\color{white}{\text{set of $n$ nodes}}}}
+		\]
+		<p>and</p>
+		\[
+		 E = \left\{ e_1, e_2, \ldots, e_m\right\} \qquad\qquad \color{red}{\boxed{\color{white}{\text{set of $m$ edges}}}}
+		\]
+					
+		<p>Edges consist of pairs of nodes, i.e. the $i$th edge is given by $\displaystyle e_i = (v_{i_1}, v_{i_2})$</p>
+		</span>
+					
+	</section>
+	
+	<section  align="left">				
+		<h3>Example 2.1</h3>	
+		<div class="twocolumn">
+			<div>
+				<img data-src="figures/Ex2p1a.png"style="scale: 1; border: 5px solid #00FF00" class="center">					
+				<img data-src="figures/Ex2p1b.png"style="scale: 1; border: 5px solid #00FF00" class="center">								
+			</div>
+			<div>
+				<br>
+				\[
+				\begin{align*}
+				V_1 &= \{v_1, v_2, v_3, v_4\}\\									
+				&\\
+				E_1 &= \{(1,2), (1,3), (1,4), (2,3), (2,4), (3,4)\}
+				\end{align*}
+				\]
+				<p>This is an example of a <em>simple network</em></p>
+				<br><br><br>
+				\[
+				\begin{align*}
+				V_2 &= \{v_1, v_2, v_3, v_4\}\\									
+				&\\
+				E_2 &= \left\{(1,1), (1,2), (1,4), (2,1), (2,3),\right.\\ 
+				&\left.(2,4), (3,2), (4,3)\right\}
+				\end{align*}
+				\]
+				<p>This network is <em>not</em> simple</p>
+			</div>
+		</div>
+	</section>
+	
+	<section>
+		<section  align="left">				
+				
+			<p>	The simplest and most common way of representing a network is via its <em>adjacency matrix</em> which we define as follows:</p>
+			\[
+			 A = \begin{cases}1&i\sim j\\ 0& \text{otherwise}\end{cases}
+			\]
+			
+			<span class="fragment fade-in">			
+			<p>For the examples in the previous slide we have that</p>			
+			
+			<div class="twocolumn">
+				<div>
+					(a)
+					\[
+					 A = \begin{bmatrix}0&1&1&1\\1&0&1&1\\1&1&0&1\\1&1&1&0\end{bmatrix} = A^T
+					\]
+				</div>
+				<div>
+					(b)
+					\[
+					 A = \begin{bmatrix}1&1&0&1\\1&0&1&1\\0&1&0&0\\0&0&1&0\end{bmatrix} \neq A^T
+					\]      
+				</div>
+			</div>
+			
+			<p> An undirected network has a symmetric adjacency matrix</p>
+			</span>
+		</section>
+			
+		<section  align="left">				
+				
+			<p>We can study a network by using our knowledge of linear algebra to study the adjacency matrix -  we 
+			shall return to this!</p><br>
+				
+			<p>We can also use the adjacency matrix to compute certain <em>network statistics</em></p><br>
+			<p> For example, the number of edges incident to a node can be computed as</p>
+			\[
+			 \color{red}{\boxed{\color{white}{
+			 k_i = \sum_{j=1}^n a_{ij} = A\mathbf{1}\qquad \text{where $\mathbf{1}^T = (1, 1, \ldots, 1)$}}}}
+			\]
+				
+			<p>For a directed network we have </p>
+			\[
+			 \color{#00FF00}{\boxed{\color{white}{
+			 k_i^\mathrm{out} = \sum_{j=1}^n a_{ij} = A\mathbf{1} \quad\text{and}\quad k_i^\mathrm{in} = \sum_{i=1}^n a_{ij} = A^T\mathbf{1}
+			 }}}
+			\]
+		</section>
+					
+	</section>
+	
+	<section  align="left">				
+		<h3>Example 2.2</h3>	
+		<div class="twocolumn">
+			<div>
+				<img data-src="figures/Ex2p1a.png"style="scale: 1;border: 5px solid #00FF00" class="center">
+				<img data-src="figures/Ex2p1b.png"style="scale: 1; border: 5px solid #00FF00" class="center">					
+			</div>
+			<div>
+				<br>
+				<p>Each node of the network has equal degree</p>
+				\[
+				k_i = 3 \forall i \implies \mathbf{k} = \begin{bmatrix}3&3&3&3\end{bmatrix}^T
+				\]
+				<br><br><br><br>
+				<p>This network is directed so we can compute two degree vectors</p>
+				\[
+				 \mathbf{k}^\mathrm{in} = \begin{bmatrix}2&2&2&2\end{bmatrix}^T
+				\]	
+				and					
+				\[
+				 \mathbf{k}^\mathrm{out} = \begin{bmatrix}3&3&1&1\end{bmatrix}^T
+				\]
+			</div>
+		</div>
+	</section>
+		
+	<section  align="left">				
+		<p>The mean degree is given by</p>
+			
+		\[
+		 \begin{align*}
+		 \langle k\rangle &= \frac{1}{n}\sum_{i=1}^n k_i\\
+ 		 &=\frac{1}{n}\sum_{i=1}^n\sum_{j=1}^n a_{ij}\\
+		 &= \frac{2m}{n} \quad\color{red}{\text{why is there a factor of 2 here?}}
+		 \end{align*}
+		\]
+			
+		<p>Here $m$ is the number of edges in the network</p>
+			
+		<span class="fragment fade-in">
+		<p>In the case of a directed network we have that </p>
+		\[
+		 \langle k^\mathrm{in}\rangle = \langle k^\mathrm{out}\rangle = \frac{m}{n}
+		\]
+			
+		<img data-src="figures/prove.png"style="position:absolute;top:400px;left:650px"width="300px">	
+		</span>
+	</section>
+		
+	<section  align="left">	
+		<p>Given the degree sequence (or vector) of a network we can compute its <em>degree distribution</em></p>
+			
+		<h3>Example 2.3</h3>	
+			
+		Suppose we have the network
+			
+		\[
+			
+		\]
+			
+		<div class="twocolumn">
+			<div>
+				<img data-src="figures/Ex2p3.png"style="scale: 1;border: 5px solid #00FF00" class="center">					
+			</div>
+			<div>
+		
+			<p>Then</p>
+			\[
+			 p_0 = 0, p_1 = 0, p_2 = \frac{4}{5}, p_3=0, p_4=\frac{1}{5}, p_k=0 \text{ for } k\geq 5
+			\]
+			<p>where $p_k$ gives the probability that a randomly chosen node will have degree $k$</p>
+					
+			<p>Note that $\{p_k\}$ is a probability distribution since $\displaystyle \sum_{k=0}^\infty p_k = 1$</p>
+								
+			</div>
+		</div>
+		<p> This distribution is known as the <strong>degree distribution</strong></p>
+				
+	</section>
+			
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L2</h1>
+		<br>
+		<ul>
+			<li>Network basics</li>
+			<br>										
+			<span style="color: #00FF00"> 
+			<li>Network traversals: walks and paths</li></span>
+		</ul>
+	</section>
+	
+	<section>		
+		<section  align="left">					
+			<p>	<em>Walks</em> and <em>paths</em> are related to network communication and so play an important role in network science</p>
+			<span class="fragment fade-in">
+			<textBox touch-action="none" >
+			<boxTitle>
+			<h3>Definition 2.1</h3>
+			</boxTitle>			
+			<p>A walk is any traversal of a network that follows edges:</p>
+			\[
+			 (v_{i_1}, v_{i_2}), (v_{i_2}, v_{i_3}), (v_{i_3}, v_{i_4}), \ldots, (v_{i_k}, v_{i_{k+1}})
+			\]
+			<p>The number of edges is termed the length of the walk. If $v_{i_1}=v_{i_k+1}$ then the walk is closed.</p>				
+			</textBox>
+			</span>
+			
+			<span class="fragment fade-in">
+			<p>Importantly, the number of <em>walks of length $k$</em> in a network can be easily computed using the adjacency matrix</p>
+			</span>
+		</section>
+		
+		<section  align="left">					
+			<p>To see this, note the following theorem:</p>
+					
+			<textBox touch-action="none" >
+			<boxTitle>
+			<h3>Theorem 2.1</h3>
+			</boxTitle>			
+			<p>The number of walks of length $k$ in a network $N=(V, E)$ from node $v_i$ to node $v_j$ is given by the entry in position $(i, j)$ of the matrix $A^k$</p>
+			</textBox>
+			
+			<span class="fragment fade-in">
+			<p>Some immediate consequences of the above are:</p>
+			<ul>
+				<li>The degree sequence is given by the diagonal entries of $\displaystyle A^2$</li></span>
+				<span class="fragment fade-in"><li>The number of triangles in a network are given by $\displaystyle \frac{\mathrm{trace}(A^3)}{6}$</li></span>
+				<span class="fragment fade-in"><li>A network is <em>connected</em> if for each pair of vertices $i, j$ there exists an integer $k$ such that $\left(A^k\right)_{ij}$</li>			</span>
+			</ul>
+			</span>
+		</section>
+										
+	</section>
+	
+	<section>
+	
+		<section  align="left">	
+			<h3>Example 2.4</h3>	
+			<p>Let $N$ be the network with the adjacency matrix</p>
+			\[
+			A = \begin{bmatrix}0&1&0&1&0\\1&0&0&1&0\\0&0&0&1&1\\1&1&1&0&1\\0&0&1&1&0\end{bmatrix}
+			\]
+		
+			<span class="fragment fade-in">
+			Then
+			\[
+			A^2 = \begin{bmatrix}2&1&1&1&1\\1&2&1&1&1\\1&1&2&1&1\\1&1&1&4&1\\1&1&1&1&2\end{bmatrix}\quad\text{and}
+			\quad A^3 = \begin{bmatrix}2&3&2&5&2\\3&2&2&5&2\\2&2&2&5&3\\5&5&5&4&5\\2&2&3&5&2\end{bmatrix}
+			\]
+			and so
+			\[
+			\begin{align*}
+			\mathbf{k}=\begin{bmatrix}2&2&2&4&2\end{bmatrix}\quad \text{and} \quad \mathrm{trace}\left(A^3\right) &= \sum_{i=1}^5\left(A^3\right)_{ii} = 12\\
+			&\implies \text{2 triangles}
+			\end{align*}
+			\]
+			</span>		
+		</section>
+		
+		<section  align="left" data-transition="fade">	
+			<p>Let's check by drawing the network</p>
+			
+			<p>Recall</p>
+			\[
+			\color{red}{\boxed{\color{white} {
+			\mathbf{k}=\begin{bmatrix}2&2&2&4&2\end{bmatrix}}}}\quad \color{white} {\text{and} \quad \mathrm{trace}\left(A^3\right) = \sum_{i=1}^5\left(A^3\right)_{ii} = 12}
+			\]
+			<br>
+			<span class="fragment fade-in">
+			<div class="twocolumn">
+				<div>
+					<img data-src="figures/Ex2p4.png" style="scale: 1;border: 5px solid #00FF00" align="middle">										
+				</div>
+				<div>		
+					<br>
+					<ul>
+						<li>There are two closed walks of length 2 except at node 4</li><br>
+						<li>Node 4 contains 4 such walks</li><br>
+						<li>This agrees with our result</li>
+					</ul>					
+				</div>
+			</div>			
+			</span>
+		</section>	
+		
+		<section  align="left" data-transition="fade">	
+			<p>Let's check by drawing the network</p>
+			
+			<p>Recall</p>
+			\[
+			
+			\mathbf{k}=\begin{bmatrix}2&2&2&4&2\end{bmatrix}\quad \text{and}\quad\color{red}{\boxed{\color{white}{ \mathrm{trace}\left(A^3\right) = \sum_{i=1}^5\left(A^3\right)_{ii} = 12}}}
+			\]
+			<br>			
+			<div class="twocolumn">
+				<div>
+					<img data-src="figures/Ex2p4_2.png" style="scale: 1;border: 5px solid #00FF00" align="middle">										
+				</div>
+				<div>		
+					<br>
+					<ul>
+						<li>There are two closed walks of length 3 except at node 4</li><br>
+						<li>Node 4 contains 4 such walks</li><br>
+						<li>This agrees with our result (12/6 = 2 triangles)</li>
+					</ul>					
+					<img data-src="figures/triangle.png" style="scale: 1" align="middle">										
+				</div>
+			</div>						
+		</section>	
+		
+		<section align="left">
+			
+			<p>A final point before moving on is that since $A^2>0$ the nework is clearly <strong>connected</strong>, a fact that is obvious from the picture</p>
+			
+			<div class="twocolumn">
+				<div>
+					<img data-src="figures/Ex2p4_3.png" style="scale: 1;border: 5px solid #00FF00" align="middle">										
+				</div>
+				<div>		
+					<br>
+					<ul>
+						<li>Since $A^2>0$ we can walk between any two nodes in the network in 2 steps</li><br>
+						<li>Again, this is clear from the picture</li><br>
+						<li>We say the network consists of a single <strong>connected component</strong></li>
+					</ul>					
+				</div>
+			</div>			
+			
+		</section>
+		
+	</section>
+	
+	<section>
+		<section align="left">
+			<p>Note that for a directed network we generalise the concept of directedness to either include or disregard directionality</p>
+			<br>			
+			<div class="twocolumn">
+				<div>
+					<br>
+					<ul>
+						<li>A network is <b>strongly connected</b> if a directed walk exists between all nodes</li><br>
+						<li>If it is not possible to travel between any node pair via a directed walk, but it is possible if direction is ignored, then we
+						say that the network is <b>weakly connected</b></li><br>						
+					</ul>			
+				</div>
+				<div>		
+											
+					<img data-src="figures/StrongConn.png" style="scale: 1;position:absolute;top:100px;left:750px;" align="right">							
+					<img data-src="figures/WeakConn.png" style="scale: 1; position:absolute;top:300px;left:500px;" >										
+				</div>
+			</div>						
+			
+		</section>
+		
+		<section align="left">
+			<p>If a network consists of more than one component then we say it is <b>disconnected</b></p>
+			<img data-src="figures/DissConn.png" style="scale: 1" align="middle">		
+			<ul>
+				<li>This example consists of two components</li>
+				\[
+				 V_1 = \left\{v_1, v_2, v_3, v_4, v_5\right\} \quad \text{and} \quad 	V_2 = \left\{ v_6, v_7, v_8\right\}
+				\]				
+				<span class="fragment fade">
+				<li>The first component is weakly connected and the second is strongly connected</li>				
+				<li>The network is disconnected</li></span>
+			</ul>			
+		</section>
+		
+		<section align="left">
+			<p>Importantly, the adjacency matrix of a network consisting of multiple components is block diagonal</p>
+			\[
+			 A = \begin{bmatrix}A_1&&&\\&A_2&&\\&&\ddots&\\&&&A_q\end{bmatrix}
+			\]
+			<p>where each block represents a connected component</p>
+			
+			<span class="fragment fade-in">
+			<p>The adjacency matrix for the example over page is:</p>
+			\[
+			 A = \begin{bmatrix}0&1&0&0&0&&&\\0&0&0&0&0&&&\\0&0&0&0&0&&&\\1&1&1&0&0&&&\\0&0&0&1&0&&&\\&&&&&0&0&1\\&&&&&1&0&0\\&&&&&0&1&0\end{bmatrix} 
+			 = \begin{bmatrix}A_1&\\&A_2\end{bmatrix}
+			\]
+			<img data-src="figures/DissConn.png" style="scale: .5; position:absolute;top:200px;left:600px;" >										
+			</span>
+		</section>
+	</section>
+	
+	<section>
+		<h2 style="color:#00FF00">Lecture 2 Review</h2>
+		<br>				
+		<ul>						
+			<li>In this lecture we covered</li>
+				<ul>
+					<li>Network basics</li>
+					<li>Walks and paths</li>																	
+				</ul><br>
+			<li>After this lecture you should</li>
+				<ul>
+					<li>understand the basics in network science</li>						
+					<li>know the difference between a walk and a path</li>
+					<li>know how to compute the number of walks using the adjacency matrix</li>
+				</ul><br>					
+		</ul>			
+	</section>
+						
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+          <script src="plugin/math/math.js"></script>
+          <script>
+            Reveal.initialize({ plugins:[ RevealMath.KaTeX ] });
+          </script>
+</body>
+</html>

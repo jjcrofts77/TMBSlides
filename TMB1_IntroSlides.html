@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+ <div class="reveal">
+    <div class="slides">
+      <!-- ################################################### -->
+      <!-- ################################################### -->
+      <!-- ################################################### -->
+      <!-- ################################################### -->
+      <!-- ################################################### -->
+      <!-- ################################################### -->
+      <!-- ################################################### -->
+      <!-- ################################################### -->
+      <section>
+        <h1>Topics in Mathematical Biology</h1>
+        <h2>Lecture 1</h2>
+        <p style="font-size:48px; color: #00FF00">Jonathan Crofts</p>        
+        <p style="color: #00FF00">Nottingham Trent University</p>
+      </section>
+	  <!-- ################################################### -->
+      <!-- ################################################### -->
+      <section align="left">
+		<h1>Topics in Maths Bio L1</h1>
+		<br>
+				
+		<ul>
+			<span style="color: #00FF00"> <li>Introductory slides</li></span>
+			<br>
+			<li>Complex Networks in Biology</li>				
+		</ul>
+		
+	</section>
+    <!-- ################################################### -->
+    <!-- ################################################### -->
+	<section>
+		<h3><b>Course Information</b></h3>
+	<font size="6">
+	<p style="border-width:2px; border-style:solid; border-color:white; padding: .5em;">
+	Lecturer: Dr Jonathan Crofts<br>
+	MAE: Room 303<br>
+	Email: jonathan.crofts@ntu.ac.uk
+	</p>
+	
+	<h3><b>Timetable</b></h3>
+	<p style="border-width:2px; border-style:solid; border-color:white; padding: .5em;">
+	Lecture: 11-12, Wednesday ABK 111<br>	
+	Computer Lab: 12-13, Wednesday ABK 106<br>				
+	</p>
+				
+	<h3><b>Office hours</b></h3>
+	<p style="border-width:2px; border-style:solid; border-color:white; padding: .5em;">
+	9:00-10:00 Monday
+	</p>
+	</font>
+	</section>
+			
+	<section align=left>
+	<h2><b>Module content</b></h2>
+	<br>
+	
+	<ul>
+		<li><b>Introduction and basic concepts</b></li>
+		<ul>
+			<li>Basic graph theory</li>
+			<li>Adjacency relations</li>
+			<li>Network measures</li>
+		</ul><br>
+		<span class = "fragment fade-in">
+		<li><b>Network models</b></li>
+		<ul>
+			<li>Random graphs</li>
+			<li>Small-world networks</li>
+		</ul><br>	
+		</span>
+		<span class = "fragment fade-in">
+		<li> <b>Summary statistics</b></li>
+		<ul>
+			<li>Centrality measures</li>
+			<li>Modularity</li>
+		</ul>
+		</span>
+	</ul>
+	
+	</section>
+	
+	<section>
+	<h3 ><b>Reading list</b></h3>
+								
+	<ul>		
+		<li>You will probably not need to buy a book for this module as <a href="https://jjcrofts77.github.io/TMB-MATH34041/intro.html#" target="_blank" style="color: #00FF00">notes</a> are provided, as well 
+		as supplementary material during seminars and via the <a href="https://now.ntu.ac.uk/" target="_blank" style="color: #00FF00">University's virtual learning service</a>
+		</li>
+		<br>
+		<span  class = "fragment fade-in">
+		<li>However, the following books cover most of the material to be presented as well as providing a good basis for additional reading and learning</li>	<br>				
+					
+		<ul>
+			<li>Estrada E. (2012), <a href="https://academic.oup.com/book/12738" target="_blank" style="color: white">The structure of complex networks: theory and applications </a></li>
+			<li>Newman M. (2010), <a href="https://academic.oup.com/book/27303" target="_blank" style="color: white">Networks: an introduction</a></li>
+			<li>Buchanan M. (2010), <a href="https://www.cambridge.org/core/books/networks-in-cell-biology/30BDF60A4D3B80677B0B031CDB7B1E36" target="_blank" style="color: white">Networks in cell biology</a></li>
+			<li>Zinoviev D. (2018), <a href="https://www.amazon.co.uk/Complex-Network-Analysis-Python-Zinoviev/dp/1680502697" target="_blank" style="color: white">Complex network analysis in Python: recognise-construct-visualise-interpret</a></li>
+		</ul></span>
+	</ul>
+			
+	</section>
+	
+	<section>
+	<h3><b>Assessment</b></h3>	
+	<ul>
+		<li>The module consists of two elements</li><br>
+		<ul>
+			<li>Element 1: Differential Equations in Biology</li> 
+			<ul>
+				<li>January exam (50%)</li>
+			</ul><br>
+			<li>Element 2: Networks in Biology</li> 
+			<ul>
+				<li>Coursework (50%)</li>
+			</ul>
+		</ul>
+		
+		<br>
+		<span  class = "fragment fade-in">
+		<li>See <a href="https://now.ntu.ac.uk/" target="_blank" style="color: #00FF00">NOW</a> for assessment details</li>			<br>		</span>
+		<li class = "fragment fade-in">Seminars are absolutely vital for high attainment in this course as this is were we will learn Python</li><br></span>
+		<li class = "fragment fade-in">GOOD LUCK!!!</li>							
+		</ul>
+		</span>
+				
+	</section>
+			
+	<section align="left">
+	<h1>Topics in Mathematical Biology L1</h1>
+	<br>
+				
+	<ul>
+		<li>Introductory slides</li>
+		<br>
+		<span style="color: #00FF00"> <li>Complex Networks in Biology</li></span>				
+	</ul>
+	</section>
+			
+	<!--slide 1-->
+	<section align="left">
+	<h2>What passes for a complex network?</h2>
+	<br>
+			
+	<ul>
+		<li>Complex networks are large (in node number)</li>
+		<li>Complex networks are sparse (low edge to node ratio)</li>
+		<li>Complex networks are usually dynamic and evolving</li>
+		<li>Complex networks can be social, economic, natural, informational, ... </li>
+		<li style="color:#00FF00">Our focus will be on biological networks</li>		
+	</ul>
+	<br><br>
+	<span class="fragment fade-in">
+	<ul>
+		<li>Isn't this just a graph?</li>
+		<ul>
+			<li>Yes, but the emphasis is on data and mechanisitic explanations...</li>
+		</ul>
+	</ul>
+	</span>	
+			
+	</section>
+			
+	<section>
+		<!--slide 2-->
+		<section align="left">
+		<h2>What is a Network?</h2>
+		<br>
+			
+		<ul>
+			<li>Network is a mathematical structure composed of points connected by lines</li>
+			<br>
+			\begin{align*}
+				\text{Network Theory} \qquad&\longleftrightarrow\qquad \text{Graph Theory}\\
+				\text{Network} \qquad&\longleftrightarrow\qquad \text{Graph}\\
+				\text{Nodes} \qquad&\longleftrightarrow\qquad \text{Vertices}\\
+				\text{Links} \qquad&\longleftrightarrow\qquad \text{Edges (Lines)}\\
+			\end{align*}
+		</ul>
+			
+		<br><br>
+		<p>A network can be built for any functional system</p>
+		\[
+			\text{System Vs Parts} \qquad = \qquad \text{Networks Vs Nodes}
+		\]
+		</section>
+	
+		<!--slide 3-->
+		<section align="left">
+		<h2>Networks can be directed</h3>
+		<ul> 
+			<li>Networks can be <em style ="color:#00FF00">directed</em> or <em style ="color:#00FF00">undirected</em>, 
+			depending upon whether the interaction between two neighbouring nodes proceeds in both directions or in 
+			only one of them, respectively</li>
+			
+			<img style="margin:0px;padding:25px" height="150" src="figures/Motifs.png">
+			
+			<span class="fragment fade-in">
+			<li>The specificity of network nodes can links can be quantitatively charcterised by 
+			<em style ="color:#00FF00">weights</em></li>
+			
+			<img style="margin:0px;padding:25px" height="150" src="figures/Weights.png">
+			</span>
+		</ul>
+		
+		</section>
+	
+		<!--slide 4-->
+		<section align="left">
+		<h2>Networks can be connected</h2>
+		<ul> 
+			<li>A network can be <em style ="color:#00FF00">connected</em> (presented by a single component) or 
+			<em style ="color:#00FF00">disconnected</em> (presented by several disjoint components)</li>
+			
+			<img style="margin:0px;padding:25px" height="150" src="figures/Connectivity.png">
+			
+			<span class="fragment fade-in">
+			<li>Networks having no cycles are termed <em style ="color:#00FF00">trees</em>. The more cycles the 
+			network has, the more complex it is.</li>
+			
+			<img style="margin:0px;padding:25px" height="150" src="figures/TreesVsCycles.png">
+			</span>
+		</ul>
+		</section>
+	</section>
+	
+	<!--slide 5-->
+	<section align="left">
+	<h2>Simple network models</h2>
+	
+	<img style="margin:0px;padding:50px" height="450" src="figures/ToyNets.png">
+	
+	</section>
+	
+	
+	<section>
+		<!--slide 6-->
+		<section align="left">
+		<h2>Historical perspective</h2>
+		<ul>
+			<li>Systems approach: thinking about networks</li><br>
+			<ul>
+				<li>The focus moves from elements to their interactions</li>
+				<li>To a certain degree, the structural details of each element become less important than the 
+				network of interactions</li>
+				<li>Some system properties, such as robustness, fragility, modularity, hierarchy, evolvability,
+				redundancy (and others) can be better understood through a network approach</li>
+			</ul>
+			<br>
+			<span class="fragment fade-in">
+			<li>Some milestones:</li><br>
+			<ul>
+				<li>1998: Small-world networks (D Watts and S Strogatz)</li>
+				<li>1999: Scale-free networks (R Albert and AL Barabasi)</li>
+				<li>2002: Network motifs (U ALon)</li>
+			</ul>
+			</span>
+		</ul>
+		</section>
+		
+		<!--slide 7-->
+		<section align="left">
+		<h2>Networks in complex systems</h2>
+		<ul>
+			<li>Complex systems</li>
+			<ul>
+				<li>Large number of interacting components</li>
+				<li>All components and/or interactions are different from each other</li>
+				<li>Paradigms:</li>
+				<ul>
+					<li>$10^4$ types of proteins in an organism</li>
+					<li>$>10^6$ routers in the internet</li>
+					<li>$>10^9$ web pages in the WWW</li>
+					<li>$>10^{11}$ neurons in a human brain</li>
+				</ul>
+			</ul><br>
+			
+			<li>The simplest property</li><br>
+			
+			<li>Complex networks are the backbone for complex dynamical systems</li>
+		</ul>
+		</section>
+		<!--slide 8-->
+		<section align="left">
+		<h2>Why study the topology of networks?</h2><br>
+		<ul>
+			<li>Lots of easily available data</li>
+			<li>Large networks may contain information about basic design principles and/or evolutionary 
+			history of complex systems</li><br>
+		</ul>
+		<span class="fragment fade-in">
+		<br>
+		<ul>
+			<li>This is similar to paleontology:
+			<ul>
+				<li>learning about an animal from its skeleton</li>
+			</ul>
+		</ul>
+		
+		<img style="margin:0px;padding:50px" height="275" src="figures/Dino.png">
+		</span>
+		</section>
+	</section>
+	
+	<!--slide 9-->
+	<section align="left">
+	<h2>Examples of biological networks</h2>
+	<ul>
+		<li style="color: #00FF00">Biological systems represented as networks</li><br>
+		<ul>
+			<li>Protein-protein interaction networks</li>
+			<li class="fragment fade-in">Gene regulation networks</li>
+			<li class="fragment fade-in">Gene co-expression networks</li>
+			<li class="fragment fade-in">Metabolic pathways</li>
+			<li class="fragment fade-in">The food web</li>
+			<li class="fragment fade-in">Neural networks</li>
+		</ul>
+	</ul>
+	<img style="margin:0px;padding:20px;
+			height="350" src="figures/PPINet.jpg">
+		</section>
+	</section>
+	
+
+	<section>
+		<!--slide 10-->
+		<section align="left">
+		<h2>Metabolic networks</h2>
+		<ul>
+			<li>Citric acid cycle</li>
+			<li>Metabolites particpate in chemical reactions</li>
+		</ul>
+		<center>
+		<img height="450" style="margin:0px;padding:50px"  src="figures/CitricCycle.png"></center>
+		</section>
+		<!--slide 11-->
+		<section align="left">
+		<h2>Metabolic networks (ctd)</h2>
+		<p style="color:#00FF00">Biochemical pathways</p><br>
+		<img style="margin:0px;padding:0px" height="400" src="figures/BioChemPaths.png">
+		<img style="margin:0px;padding:0px" height="250" src="figures/ZoomBioChemPaths.png">
+		</section>
+		<!--slide 12-->
+		<section align="left">
+		<h2>Metabolic networks (ctd)</h2>
+		<p>Pathways can be turned into networks using databases such as the 
+		<a style="color:#00FF00" href="http://www.genome.ad.jp/kegg/kegg2.html">KEGG database</a></p>
+		<center>
+		<img style="margin:0px;padding:0px" height="500" src="figures/MetabolicNets.png"></center>
+		</section>
+	</section>
+	
+	
+	<section>
+		<!--slide 13-->
+		<section align="left">
+		<h2>Protein binding networks</h2>
+		<p>Two examples of protein interaction networks:</p>
+		<ul>
+			<li>Bakers's yeast (<em>S. cerevisiae</em>)</li>			
+			<li>Nermatode worm (<em>C.elegans</em>)</li>
+		</ul>
+		
+		<p style="color:#00FF00">Nodes are proteins and they are connected if they physically bind</p>
+		<center>
+		<img style="margin:0px;padding:25px" height="350" src="figures/BakersYeast.png">
+		<img style="margin:0px;padding:25px" height="350" src="figures/CeleganProtein.png"></center>
+		</section>
+		<!--slide 14-->
+		<section align="left">
+		<h2>Protein network of Drosphila</h2>
+		<center>
+		<img style="margin:0px;padding:5px" height="500" src="figures/DrosphilaProtein.jpg"></center>
+		<p style="color:#00FF00">The Drosophila fly is a model organism often used in studying aging diseases such as 
+		Alzhiemer's (lifespan ~ 70 days)</p>
+		</section>
+		<!--slide 15-->
+		<section align="left">
+		<h2>Protein communities</h2>
+		
+		<center>
+		<img style="margin:0px;padding:25px" height="350" src="figures/ProteinComms.jpg"></center>
+		
+		<ul>
+			<li>Matrix counting PPI interactions</li> 
+			<li>Groups of highly connected proteins evident</li>
+			<li>Suggests these proteins are `functionally connected'</li>
+		</ul>
+		</section>
+	</section>
+	
+
+	<section>
+		<!--slide 16-->
+		<section align="left">
+		<h2>Brain networks</h3>
+		<p>Neuronal network of the <em>C. elegan</em> worm</p>
+		
+		<p style="color:#00FF00">Nodes are neurons and connections mean two neurons are physically connected</p>
+		<center>
+		<img style="margin:0px;padding:0px" height="450" src="figures/CelegansNeuronal.png"></center>
+		</section>
+		<!--slide 17-->
+		<section align="left">
+		<h2>Brain networks</h3>
+		<ul>
+			<li>Modern MRI techniques allow us to construct network descriptions of the brain <em>in vivo</em></li>
+			<li style="color:#00FF00">Nodes are regions of the brain (neuronal ensembles) and connections are axon bundles connecting these regions</li>
+		</ul>
+		<center>
+		<img style="margin:0px;padding:25px" height="350" src="figures/HumanBrain.jpg"></center>
+		</section>		
+		<!--slide 18-->
+		<section align="left">
+		<h2>Neural modelling</h3>
+		<center>
+		<img style="margin:0px;padding:15px" height="250" src="figures/EEG.png"></center>
+		
+		<ul>
+			<li>There are approximately 100 billion neurons in the brain with each electrode measuring the average 
+			activity of 100s of thousands of neruons</li>
+			<span class="fragment fade-in">
+			<li>Brain dynamics can be modelled using <b>network models</b> of the form</li>			
+			<div align="center">
+			<textBox>																					
+			<p>										
+			\[
+				\frac{\mathrm{d}u_i}{\mathrm{d}t} = \frac{1}{\tau_i}\left(-u_i(t) + \sum_{j=1}^N w_{ij} f(u_j(t))\right)\quad i=1,\ldots, N
+			\]						
+			</p>
+			</div>
+			<li> $u_i$ is neural activity from the $i$th node and $w_{ij}$ is the connectivity matrix</li>
+			</span>
+		</ul>
+				
+		
+		</section>		
+	</section>
+			
+	<section>
+	<h2 style="color:#00FF00">Lecture 1 Review</h2>
+	<br>
+				
+	<ul>						
+		<li>In this lecture we covered</li>
+		<ul>
+			<li>Introductory slides</li>
+			<li>Complex networks in biology</li>						
+		</ul><br>
+		<li>After this lecture you should</li>
+		<ul>
+			<li>Have a basic understanding of what constitutes a complex network and how they can be used to model biological processes</li>						
+		</ul>					
+	</ul>			
+				
+	</section>
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+    </div>
+ </div>
+ <!-- ################################################### -->
+ <!-- ################################################### -->
+ <!-- ################################################### -->
+ <!-- ################################################### -->
+ <script src="reveal.js/lib/js/head.min.js"></script>
+ <script src="reveal.js/js/reveal.js"></script>
+ <script>
+ // Full list of configuration options available here:
+ // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+          // width: 960,
+          // height:700,
+          controls: true,
+          progress: true,
+          history: true,
+          center: true,
+          theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+          // default/cube/page/concave/zoom/linear/fade/none
+          transition: Reveal.getQueryHash().transition || 'slide',
+
+          //// Optional libraries used to extend on reveal.js
+          dependencies: [
+            // { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            // { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; }},
+            { src: 'reveal.js/plugin/math/math.js', async: true }
+          ]
+        });
+        Reveal.configure({
+          keyboard: {
+            32: null // don't do anything when SPACE is pressed (i.e. disable a reveal.js default binding) document.body.style.cursor = 'none';
+          }
+        });
+        </script>
+		<!-- ################################################### -->
+        <!-- ################################################### -->
+        </div>
+        </div>
+        <!-- ################################################### -->
+        <!-- ################################################### -->
+        <!-- ################################################### -->
+        <!-- ################################################### -->
+</body>
+</html>
