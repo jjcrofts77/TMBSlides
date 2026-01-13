@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+ <div class="reveal">
+    <div class="slides">
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<section>
+		 <h1 class="r-fit-text">Topics in Mathematical Biology</h1>
+		<h2>Lecture 3</h2>
+		<p style="font-size:48px; color: #00FF00">Jonathan Crofts</p>        
+		<p style="color: #00FF00">Nottingham Trent University</p>
+    </section>
+	  
+	<!-- ################################################### -->
+    <!-- ################################################### -->				
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L3</h1>
+		<br>
+		<ul>
+			<span style="color: #00FF00"> <li>Network traversals: walks and paths (ctd)</li></span>
+			<br>
+			<li>Watts-Strogatz clustering</li>			
+			<br>
+			<li>Transitivity index</li>			
+		</ul>		
+	</section>	
+	
+	<section>
+		<section  align="left">
+		<h3>Network traversals (ctd)</h3>
+		<ul>
+			<li>A <em style="color: #00FF00">path</em> is a walk in which all nodes and edges are distinct -- except possible the first and the last node</li><br>
+			<li>The <em style="color: #00FF00">shortest path</em> connecting two nodes is called the <em style="color: #00FF00">distance</em> between two nodes, and is denoted
+			by $d(v_i,v_j)$ or $d_{ij}$</li><br>
+			<span class="fragment fade-in">
+			<li>Two historically important measures in network science are</li>
+			<ul>
+				<li>The <em style="color: #00FF00">average (or characteristic) path-length</em>:</li><br>
+				\[
+				\color{red}{\boxed{\color{white}{
+				\langle l\rangle = \frac{1}{n(n-1)}\sum_{i,j}d(v_i,v_j)}}}
+				\]
+				<li>And the network <em style="color: #00FF00">diameter</em></li>
+				\[
+				\color{red}{\boxed{\color{white}{
+				 \max_{i,j} d(v_i, v_j)}}}
+				\]
+			</ul>
+			</span>
+		</ul>
+				
+		</section>
+	
+		<section  align="left">				
+			<h3>Example 3.1</h3>
+			<p>The adjacency matrix is</p>
+			\[
+				A = \begin{pmatrix}
+				0&1&0&1&0&0\\
+				1&0&0&1&0&0\\
+				0&0&0&1&1&1\\
+				1&1&1&0&1&0\\
+				0&0&1&1&0&1\\
+				0&0&1&0&1&0\\
+				\end{pmatrix}
+			\]
+			<p>and the distance matrix is</p>
+			\[
+			D = \begin{pmatrix}
+				0&1&2&1&2&3\\
+				1&0&2&1&2&3\\
+				2&2&0&1&1&1\\
+				1&1&1&0&1&2\\
+				2&2&1&1&0&1\\
+				3&3&1&2&1&0\\
+				\end{pmatrix}
+			\]	
+		
+		<img style="margin:0px;padding:0px;position:absolute;top:50px;left:825px"				
+				height="275" src="figures/Ex3p1aNetwork.png">
+		<span class="fragment fade-in">
+		<p style="color:#00FF00">The diameter of this network is 3 and the average path-length is 1.6 (exercise)</p>	
+		<img style="margin:0px;padding:0px;position:absolute;top:400px;left:850px"				
+				height="200" src="figures/Ex3p1bNetwork.png">				
+		</span>		
+		</section>
+		
+		<section  align="left">				
+		<h3>Note</h3>
+		<center>
+		<img style="margin:30px;padding:30px"				
+				height="400" src="figures/Path.png">
+				<img style="margin:30px;padding:30px"				
+				height="400" src="figures/Walk.png">
+		</center>
+		<font size="5.5">
+		\[
+		\text{Edge lists:}\quad\left\{(v_1, v_4),(v_4, v_3),(v_3, v_6)\right\}\qquad
+		\left\{(v_1, v_4),(v_4, v_2),(v_2, v_4),(v_4, v_3),(v_3, v_6)\right\}
+		\]
+		</font>
+		</section>	
+		
+	</section>
+	
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L3</h1>
+		<br>
+		<ul>
+			<li>Network traversals: walks and paths (ctd)</li>
+			<br>
+			<li style="color: #00FF00">Watts-Strogatz clustering</li>			
+			<br>
+			<li>Transitivity index</li>			
+		</ul>		
+	</section>	
+	
+	<section>
+		<section  align="left">
+		<h3>Watts-Strogatz clustering</h3>
+		<ul>
+			<li>Clustering as a concept has its roots in social networks, the idea being that you are more likely to be friends 
+			with a friend's friend than a random person</li><br>
+			<li>In terms of network structure this results in the formation of lots of triangles</li><br>
+			<li>To measure the density of triangles present at a node we can use the quantity</li>
+		</ul>	
+		<center>
+		<textBox touch-action="none" >
+		<p></p>
+		\[
+			\quad C_i = \frac{\# \text{ of } \Delta\text{s centered at node } i}
+			{\text{total } \# \text{ possible } \Delta\text{s centered on node } i}\quad
+		\]		
+		<p></p>
+		</textBox>	
+		</center>
+		<p class="fragment fade-in" style="color:#00FF00">This is the local WS clustering of a node</p>
+		
+					
+		</section>
+	
+		<section  align="left">	
+		<p>Let us formulate a mathematical expression for the above</p>
+		<center>
+		<textBox touch-action="none" >
+		<p></p>
+		\[
+			\quad C_i = \frac{\# \text{ of } \Delta\text{s centered at node } i}
+			{\text{total } \# \text{ possible } \Delta\text{s centered on node } i}\quad
+		\]		
+		<p></p>
+		</textBox>	
+		</center>				
+		<p>But before we do that, what exactly do we mean by `possible triangle'?</p>
+		
+		<span class="fragment fade-in">
+		<h3>Example 3.2</h3>
+		<p>Consider node 4 in the following networks</p>
+		<center>
+		<img style="margin:0px;padding:30px"				
+				height="150" src="figures/Triangles0.png">
+		<img style="margin:0px;padding:30px"				
+				height="150" src="figures/Triangles3.png">
+		<img style="margin:0px;padding:30px"				
+				height="150" src="figures/Triangles1.png">
+		\[
+		3\text{ possible; } 0\text{ triangles}\qquad 3\text{ possible; } 3\text{ triangles}\qquad
+		3\text{ possible; } 1\text{ triangles}
+		\]
+		</center>
+		</span>
+		</section>
+		
+		<section  align="left">				
+		<ul>	
+			<li>We see that the number of possible triangles (or <em>two-paths</em>) is related to the degree
+			of the node
+			</li><br>
+			<li>In fact, it is given by</li><br>
+			\[
+			\begin{align*}
+			\binom{n}{2}&=\frac{k_i!}{k_i(k_i-2)!} \qquad (k_i \text{ degree of node } i)\\
+			&= \frac{k_i(k_i-1)}{2}			
+			\end{align*}
+			\]
+			
+			<span class="fragment fade-in">
+			<li>Thus, if we denote the number of triangles at node $i$ by $t$ then we have</li><br><br>
+			
+			<center>
+			\[
+			\color{red}{\boxed{\color{white}{
+			\quad C_i = \frac{2t}{k_i(k_i-1)}\quad}}} \qquad \color{white}{\text{this is the \emph{local} Watts-Strogatz clustering}}
+			\]
+			</center>
+			</span>
+		</ul>	
+		</section>
+		
+		<section  align="left">				
+		<p>As is common in network science we obtain a global measure of clustering by averaging over the local measure</p>
+			
+		<p>Thus</p>
+			
+		<center>
+		\[
+			\color{red}{\boxed{\color{white}{
+			\quad \langle C\rangle = \frac{1}{n}\sum_{i=1}^n C_i\quad}}} \qquad \color{white}{\text{this is the \emph{global} Watts-Strogatz clustering}}
+		\]
+		</center>
+		
+		<p>In the above $C_i$ denotes the local WS clustering of the $i$th node</p>
+		
+		<p class="fragment fade-in" style="color:#00FF00">There is however a more natual way to measure global clustering ...</p>
+		</section>
+	
+	</section>	
+			
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L3</h1>
+		<br>
+		<ul>
+			<li>Network traversals: walks and paths (ctd)</li>
+			<br>
+			<li>Watts-Strogatz clustering</li>
+			<br>										
+			<li style="color: #00FF00"> Transitivity index</li></span>
+		</ul>
+	</section>
+	
+	<section  align="left">					
+	<h3>Transitivity index</h3>
+	<font size="5">
+	<p>Denote by</p>
+	\[
+		|P_2| - \text{ total $\#$ of two-paths in the network}
+	\]
+	<p>and by</p>
+	\[
+		|C_3| - \text{ total $\#$ of triangles in the network}
+	\]
+	<p>Then we define a global measure of clustering, know as the 
+	<em style="color:#00FF00">transitivity index</em>, as follows</p>
+	\[
+		\color{red}{\boxed{\color{white}{
+		\quad T = \frac{3|C_3|}{|P_2|}}}}\quad
+	\]
+		
+	<span class="fragment fade-in">
+	<h3>Note</h3>
+	<p>The factor of three accounts for the fact that each triangle contains 3 two-paths</p>
+	<center>
+	<img style="margin:0px;padding:0px"				
+			height="150" src="figures/TwoPath1.png">
+	<img style="margin:0px;padding:0px"				
+			height="150" src="figures/TwoPath2.png">
+	<img style="margin:0px;padding:0px"				
+			height="150" src="figures/TwoPath3.png">
+	</center>
+	</span>
+	</font>
+	</section>
+		
+	<section>
+	
+		<section  align="left">	
+			<h3>Example 3.3</h3>	
+			<p>Let $N = (V, E)$ be the network shown below</p>
+			
+			<leftSide style="width:40%;text-align:center">			
+			<img style="margin:0px;padding:20px"				
+				height="350" src="figures/Ex3p3Network.png">
+			</leftSide>
+			
+			<rightSide style="width:60%;text-align:center">				
+			<p>The adjacency matrix of which is</p>
+			\[
+				A = \begin{pmatrix}
+					0&1&1&1&1&0&0&0\\
+					1&0&1&0&0&1&0&0\\
+					1&1&0&1&0&0&1&0\\
+					1&0&1&0&0&0&0&1\\
+					1&0&0&0&0&0&0&0\\
+					0&1&0&0&0&0&0&0\\
+					0&0&1&0&0&0&0&0\\
+					0&0&0&1&0&0&0&0\\
+					\end{pmatrix}
+			\]
+			<br>
+			<ol>
+				<li>Compute $C_i$ for each node and compute the global WS clustering coefficient</li><br>
+				<li>Compute the transitivity index</li>
+			</ol>
+			</rightSide>
+			
+		</section>
+		
+		<section  align="left" data-transition="fade">	
+		<h3>Solution</h3>
+		<p>(1) Clearly, $C_5 = C_6 = C_7 = C_8 = 0$</p>
+			
+		<p>Also, </p>
+		\[
+		C_2 = C_4 = \frac{1}{3}
+		\]
+		and
+		\[
+		 C_1 = C_3 = \frac{1}{3}
+		\]
+		
+		<span class="fragment fade-in">
+		<p>Therefore</p>
+		\[
+		\begin{align*}
+			\langle C\rangle &= \frac{1}{8}\left(\frac{1}{3}+\frac{1}{3}+\frac{1}{3}+\frac{1}{3}+0+0+0+0\right)\\
+			&=\frac{1}{6}
+		\end{align*}
+		\]
+		<p style="color:#00FF00">This is the global WS clustering coefficient</p>
+		</span>
+		<img style="margin:0px;padding:0px;position:absolute;top:100px;left:700px"				
+				height="275" src="figures/Ex3p3Network.png">
+		</section>	
+
+		<section align="left">
+		<h3>Solution (ctd)</h3>
+		<p>(2) To compute the transitivity we use the fact that</p>
+		\[
+			|C_3| = \frac{1}{6}\mathrm{Tr}(A^3)
+		\]
+		<p>To see this recall</p>
+		\[
+			\mathrm{Tr}(A^3) = \sum_{i}\left(A^3\right)_{ii}
+		\]
+		<p>and</p>
+		\[
+			\left(A^3\right)_{ii} - \text{ $\#$ of closed walks of length 3 centred at node $i$}
+		\]
+		
+		<p style="color:#00FF00">In other words the trace of A to the power 3 is proportional to the number of triangles in a 
+		network - it actually over counts</p>
+		
+		</section>
+		
+		<section align="left">
+		<h3>Solution (ctd)</h3>
+		<p>In this case it is easier to count the triangles by looking at the plot</p>
+		\[
+			|C_3| = \frac{\mathrm{Tr}(A^3)}{6} = 2
+		\]
+		
+		<p>To obtain the number of two-paths:</p>
+		\[
+			\begin{align*}
+			|P_2| &=\sum_{i=1}^n\binom{k_i}{2}\\
+			&=\sum_{i=1}^n\frac{k_i(k_i-1)}{2}\\
+			&=18 \qquad\implies \qquad T = \frac{3|C_3|}{|P_2|} = \frac{3\times 2}{18} = 
+			\color{red}{\boxed{\color{white}{\frac{1}{3}}}}
+			\end{align*}
+		\]
+		
+		<p class="fragment fade-in" style="color:#00FF00">Exercise: compute the number of triangles using the adjacency matrix</p>
+		
+		<img style="margin:0px;padding:0px;position:absolute;top:150px;left:700px"				
+				height="200" src="figures/Ex3p3Network.png">
+		</section>
+		
+	</section>
+	
+	<section align="left">
+	<h3>Note</h3>
+	<ul>
+		<li>$C$ is typically not equal to $T$; in fact, they can be wildly different.</li><br>
+		<li class="fragment fade-in">A network for which $C$ (or $T$) is large and for which the average path-length is small is called 
+		<em style="color: #00FF00">small-world network</em></li><br>
+		<li class="fragment fade-in"><p>Mathematicians say a network is small-world if</p>
+		\[
+			\color{red}{\boxed{\color{white}{
+			\langle l\rangle \propto \ln{n}
+			}}}
+		\]
+		<p>Here, $n$ is the size of the network.</p>
+		</li>
+		<li class="fragment fade-in"><p>The following identities are often useful when computing clustering</p>
+		\[
+		\color{red}{\boxed{\color{white}{
+			\mathrm{Tr}(A) = \sum_{i=1}^n\lambda_i \quad \text{ and } \quad \mathrm{Tr}(A^k)\sum_{i=1}^2\lambda_i^k
+		}}}
+		\]
+		<p>Here the $\lambda_i$ are the eigenvalues of $A$</p>
+		</li>
+	</ul>
+			
+			
+	</section>
+			
+	<section>
+		<h2 style="color:#00FF00">Lecture 3 Review</h2>
+		<br>				
+		<ul>						
+			<li>In this lecture we covered</li>
+				<ul>
+					<li>Network traversals: walks and paths (ctd)</li>
+					<li>Watts-Strogatz clustering</li>
+					<li>Transitivity index</li>																	
+				</ul><br>
+			<li>After this lecture you should</li>
+				<ul>
+					<li>understand the important concept of network clustering</li>						
+					<li>know the difference between WS clustering and network transitivity</li>					
+				</ul><br>					
+		</ul>			
+	</section>
+						
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+          <script src="plugin/math/math.js"></script>
+          <script>
+            Reveal.initialize({ plugins:[ RevealMath.KaTeX ] });
+          </script>
+</body>
+</html>
