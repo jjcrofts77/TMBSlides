@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+ <div class="reveal">
+    <div class="slides">
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<section>
+		 <h1 class="r-fit-text">Topics in Mathematical Biology</h1>
+		<h2>Lecture 5</h2>
+		<p style="font-size:48px; color: #00FF00">Jonathan Crofts</p>        
+		<p style="color: #00FF00">Nottingham Trent University</p>
+    </section>
+	  
+	<!-- ################################################### -->
+    <!-- ################################################### -->				
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L5</h1>
+		<br>
+		<ul>
+			<li style="color: #00FF00">Small-world networks</li>
+			<br>
+			<li>Spectral properties of networks</li>			
+			<br>
+			<li>The Perron-Frobenius theorem</li>			
+		</ul>		
+	</section>	
+	
+	<section>
+		<section  align="left">
+		<h3>Small-world networks</h3>
+		<p>One of the most popular concepts to date in network science is that of 
+		the <em style="color:#00FF00">small-world network</em>, <em>i.e.</em> a network 
+		that simultaneously shares the two properties</p>
+		<ol>
+			<li><p>A small characteristic path-length</p>
+			\[
+			\color{red}{\boxed{\color{white}{
+				\langle l\rangle \propto \log{n}
+				}}}
+			\]
+			<p>Here $n = |V|$ is the order of the network</p></li>
+			<li>A 'large' clustering coefficient</li>
+		</ol>
+		<p class="fragment fade-in">Before looking in more detail at the mathematics behind such networks
+		let us consider an important social experiment ran in the 1960s</p>
+		</section>
+	
+		<section  align="left">				
+		<h3>Milgram's experiment</h3>
+		<p>In 1967 Stanley Milgram, a social psychologist, ran a now famous experiment. He posed the 
+		following question: How many intermediate links separate two randomly selected individuals 
+		in a society?</p>
+		
+		<leftSide style="width:40%;text-align:center">
+		<img style="margin:0px;padding:20px"				
+		height="350"					
+		src="figures/Milgram.gif">
+		</leftSide>
+		
+		<rightSide style="width:60%;text-align:left">	
+		<font size="5">
+		<p>The Experiment</p>
+		
+		<ul>
+			<li>Random people were selected in Omaha, Nebraska</li><br>			
+			<li>They had to forward a package to named individuals in Boston following
+			two simple rules</li><br>
+			<ol>
+				<li>If you know the target by name forward immediatley</li><br>
+				<li>Otherwise, mail the package + instructions to a person you know
+				by name who is more likely to know the target</li>
+			</ol>
+		</ul>
+		</font>
+		</rightSide>
+		</section>		
+		
+		<section  align="left">		
+		<leftSide style="width:40%;text-align:center">
+		<img style="margin:0px;padding:20px"				
+		height="300"					
+		src="figures/Milgram.gif">
+		</leftSide>
+		
+		<rightSide style="width:60%;text-align:center">	
+		<img style="margin:0px;padding:20px"				
+		height="300"					
+		src="figures/MilgramNetwork.png">
+		</rightSide>
+		
+		<p>Milgram’s experiment can be considered as finding the
+		characteristic path-length in the network of acquaintances, or 
+		rather,  the appropriate subnetwork that includes only those 
+		acquaintances that are likely to be able to help the package 
+		reach its goal.</p>
+		
+		<p class="fragment fade-in" style="color:#00FF00">On average it took
+		6 steps for the packages to reach their target coining the famed 6 
+		degrees of separation (Kevin Bacon game <em>etc.</em>)</p>		
+		</section>
+	
+	</section>	
+	
+	<section>
+		<section  align="left">
+		<h3>Watts-Strogatz small-world model</h3>
+		<p>	The idea behind the Watts-Strogatz model is a simple one: real-world 
+		networks are neither lattice-like nor random but lie somewhere in-between.</p>		
+		
+				
+		<leftSide style="width:40%;text-align:left">
+		<font size="5">
+		<p>To model this hybrid-like structure, WS started off with a lattice graph 
+		(LHS figure) and added `short-cuts' by rewiring existing edges with 
+		some probability $p$.</p>
+		
+		</font>
+		</leftSide>
+		
+		<rightSide style="width:60%;text-align:left">	
+		<img style="margin:20px;padding:20px"				
+		height="150"					
+		src="figures/WSSmallWorld.png">
+		<br>
+		
+		</rightSide>
+		
+		<font size="5">
+		<ul>
+			<li class="fragment fade-in">For small $p$ only a few edges are rewired meaning that the lattice structure 
+		is preserved, whilst the addition of the short-cuts greatly reduces the 
+		average path-length</li><br>
+			<li class="fragment fade-in">Alongside the RHS figure, that a range of $p$ values exist for which the network 
+		is small-world, i.e. it has large clustering and a small average 
+		path-length</li>
+		<ul>
+		</font>	
+		
+		</section>
+	
+		<section  align="left">				
+		<p>Examples of biological networks that are small-world include</p>
+		<ul>
+		<li>Cortical networks</li><br>
+		<li class="fragment fade-in" data-fragment-index="0">Metabolic networks</li><br>
+		<li class="fragment fade-in" data-fragment-index="1">Protein-protein interaction networks</li><br>
+		<li class="fragment fade-in" data-fragment-index="2">Gene regulatory networks</li><br>
+		</ul>
+		
+		<img style="margin:0px;padding:0px;position:absolute;top:100px;left:450px"				
+				height="125"					
+				src="figures/Cortical.png">
+		<img style="margin:0px;padding:0px;position:absolute;top:250px;left:750px"				
+				height="150"					
+				src="figures/Metabolic.jpg"
+				class="fragment fade-in" data-fragment-index="0">
+		<img style="margin:0px;padding:0px;position:absolute;top:350px;left:500px"				
+				height="200"					
+				src="figures/PPI.png"
+				class="fragment fade-in" data-fragment-index="1">
+		<img style="margin:0px;padding:0px;position:absolute;top:400px;left:150px"				
+				height="200"					
+				src="figures/GeneReg.png"
+				class="fragment fade-in" data-fragment-index="2">		
+		</section>
+	
+	</section>	
+			
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L5</h1>
+		<br>
+		<ul>
+			<li>Small-world networks</li>
+			<br>
+			<li style="color: #00FF00">Spectral properties of networks</li>			
+			<br>
+			<li>The Perron-Frobenius theorem</li>			
+		</ul>		
+	</section>
+	
+	<section>		
+		<section  align="left">					
+		<h3>Spectral properties of networks</h3>
+		<p>Next, we consider the so-called <em style="color:#00FF00">Perron-Frobenious theorem</em></p>	
+		
+		<p>Firstly, let us remind ourselves of some important linear algebra results:</p>
+		
+		<ul>
+			<li><p>Recall that solutions of the characteristic polynomial</p>
+			\[
+			\chi_A(t) = (t-\lambda_1)^{n_1}(t-\lambda_2)^{n_2}\ldots (t-\lambda_k)^{n_k}
+			\]
+			<p>give the eigenvalues denoted $\lambda_1, \ldots, \lambda_n$</p>
+			</li>
+			<li>In the above the $n_1, n_2, \ldots, n_k$ give the 
+			<em style="color:#00FF00">algebraic multiplicities</em> of the eigenvalues</li>
+		</ul>
+		
+		<span class="fragment fade-in">
+		<p><b>Note:</b> the set of eigenvalues is called the <em style="color:#00FF00">spectrum</em>
+		and is denoted mathematically as $\sigma(A)$</p>
+		</span>
+		</section>
+		
+		<section  align="left">		
+		<textBox touch-action="none" >
+		<boxTitle>
+		<h3>Definition 5.1</h3>
+		</boxTitle>			
+		<p>A square matrix with <em>non-negative</em> entries (<em>i.e.</em> $\displaystyle a_{ij}\geq 0$)
+		is called <b>irreducible</b> if for all pairs of indices $(i,j)$
+		there exists a positive integer $k(i,j)$ such that $\left(A^k\right)_{ij}>0$</p>		
+		</textBox>	
+
+		<span class="fragment fade-in">
+		<h3>Note</h3>
+		<ul>
+			<li>Recall that $\left(A^k\right)_{ij}$ counts the number of walks of length
+			$k$ between nodes $i, j$</li>
+			<li>It follows that a network is (strongly) connected iff it is irreducible</li>
+			<li>If $A$ is <em style="color:#00FF00">reducible</em> then it can be permuted 
+			(nodes relabelled) into block diagonal form <em>i.e.</em></li>
+			\[
+			 A = \begin{pmatrix}
+					B_1 &&&\\&B_2&&\\&&\ddots&\\&&&B_k
+				 \end{pmatrix}
+			\]
+		</ul>		
+		<p>Each block represents a component</p>
+		</span>
+		</section>
+										
+	</section>
+	
+	<section>
+	
+		<section  align="left">	
+		<h3>Example 5.1</h3>	
+		<p>Let $N$ be the network shown below</p>
+		<leftSide style="width:40%;text-align:left">
+		<img style="margin:0px;padding:20px"				
+				height="225"					
+				src="figures/Ex5p1a.png">
+
+		<img style="margin:0px;padding:20px"				
+				height="225"					
+				src="figures/Ex5p1b.png"
+				class="fragment fade-in" data-fragment-index="0">				
+		</leftSide>
+		
+		<rightSide style="width:60%;text-align:left">	
+		<p></p>
+		\[
+			A = \begin{pmatrix}
+			0&0&1&0&1\\0&0&0&1&0\\1&0&0&0&1\\0&1&0&0&0\\1&0&1&0&0
+			\end{pmatrix}
+		\]
+		<center>
+		<p>Block structure not evident</p><br></center>
+		
+		<span class="fragment fade-in" data-fragment-index="0">
+		\[
+			A = \begin{pmatrix}
+			0&1&1&0&0\\1&0&1&0&0\\1&1&0&0&0\\0&0&0&0&1\\0&0&0&1&0
+			\end{pmatrix}
+		\]
+		<center>
+		<p style="color:#00FF00">Block structure evident after relabelling nodes</p>
+		</center>
+		</span>
+		</rightSide>
+		</section>
+		
+		<section  align="left">	
+		<h3>Example 5.2</h3>
+		<p>A more realistic example highlights the difficulty of observing 
+		network structure in real-world data</p>	
+		
+		<leftSide style="width:50%;text-align:left">
+		<center>
+		<img style="margin:0px;padding:0px"				
+				height="300"					
+				src="figures/MatrixUnStruct.png">
+		
+		<p>Random labelling of nodes</p>
+		</center>		
+		</leftSide>
+		
+		<rightSide style="width:50%;text-align:left">	
+		<center>
+		<img style="margin:0px;padding:0px"				
+				height="300"					
+				src="figures/MatrixStruct.png"
+				class="fragment fade-in" data-fragment-index="0">
+		
+		<p class="fragment fade-in" data-fragment-index="0" style="color:#00FF00">Relabelling of nodes reveals structure</p>
+		</center>
+		</span>
+		</rightSide>
+		</section>	
+		
+	</section>
+	
+	
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L5</h1>
+		<br>
+		<ul>
+			<li>Small-world networks</li>
+			<br>
+			<li>Spectral properties of networks</li>			
+			<br>
+			<li style="color: #00FF00">The Perron-Frobenius theorem</li>			
+		</ul>		
+	</section>
+	
+	<section align="left">
+	<textBox touch-action="none" >
+		<boxTitle>
+		<h3>Theorem 5.1 (Perron-Frobenius)</h3>
+		</boxTitle>			
+		<p>Let $A\in\mathbb{R}^{n\times n}$ be non-negative and irreducible. Then</p>		
+		<ol>
+			<li> $A$ has a real positive eigenvalue $\lambda_1$ such that all other eigenvalues 
+			$\lambda_i$ for $i=2,\ldots, n$ satisfy $\lambda_1>|\lambda_i|$</li><br>
+		
+			<li>The eigenvalue $\lambda_1$ has algebraic multiplicity 1 and has an eigenvector 
+			$\mathbf{x}$ with all positive entries</li>
+		</ol>
+		</textBox>
+		<span class="fragment fade-in">
+		<h3>Remarks</h3>
+		<ul>
+			<li>The eigenvalue $\lambda_1$ is often referred to as the Perron-Frobenius 
+			eigenvalue</li>
+			<li>It follows that if $A$ is the adjacency matrix of a network consisting of a single
+			strongly connected component then</li>
+			<ol>
+				<li>$A$ has <em style="color:#00FF00">spectral radius</em> $\rho(A)=\lambda_1$</li>				
+				<li>The corresponding eigenvector has all positive entries</li>
+			</ol>
+		</ul>
+		</span>
+	</section>
+	
+	<section align="left">
+	<h3>Example 5.3</h3>
+	<p>Suppose $N=(V, E)$ is a $k$-regular network then</p>
+	\[
+	 \mathbf{x} = \begin{pmatrix}1,&1,&\ldots,&1\end{pmatrix}^T
+	\]
+	<p>is an eigenvector corresponding to the eigenvalue $\lambda=k$ and since
+	\[
+		|\lambda|\leq\Delta(N)
+	\]
+	<p>where $\Delta(N)$ denotes the maximum degree of the network ($k$ here)</p>
+	
+	<span class="fragment fade-in">
+	<p>To see this, suppose $x_j$ is the maximum entry of the eigenvector, then</p>
+	\[
+	 |\lambda_j x_j| = |\lambda_j||x_j| = |(Ax)_j|=\left|\sum a_{jk}x_k\right|\leq 
+	 k_j|x_j|\leq\Delta(N)|x_j|
+	\]
+	</span>
+	
+	<p class="fragment fade-in" style="color:#00FF00">It follows that the Perron-Frobeius eigenvalue for a regular network is given by
+	\[
+	 \lambda_1 = k
+	\]
+	</p>
+	</section>
+	
+			
+	<section>
+		<h2 style="color:#00FF00">Lecture 5 Review</h2>
+		<br>				
+		<ul>						
+			<li>In this lecture we covered</li>
+				<ul>
+					<li>Small-world networks</li>
+					<li>Spectral properties of networks</li>																	
+					<li>Perron-Frobenius theorem</li>
+				</ul><br>
+			<li>After this lecture you should</li>
+				<ul>
+					<li>be aware of the small-world model of Watts and Strogatz and know how to 
+					check when a real-world network has this property</li>						
+					<li>be able to use spectral techniques to analyse the structure of a network</li>					
+				</ul><br>					
+		</ul>			
+	</section>
+						
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+          <script src="plugin/math/math.js"></script>
+          <script>
+            Reveal.initialize({ plugins:[ RevealMath.KaTeX ] });
+          </script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+ <div class="reveal">
+    <div class="slides">
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<section>
+		 <h1 class="r-fit-text">Topics in Mathematical Biology</h1>
+		<h2>Lecture 4</h2>
+		<p style="font-size:48px; color: #00FF00">Jonathan Crofts</p>        
+		<p style="color: #00FF00">Nottingham Trent University</p>
+    </section>
+	  
+	<!-- ################################################### -->
+    <!-- ################################################### -->				
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L4</h1>
+		<br>
+		<ul>
+			<span style="color: #00FF00"> <li>Network models</li></span>
+			<br>
+			<li>ER random graphs</li>			
+			<br>
+			<li>Using generating functions to study ER networks</li>			
+		</ul>		
+	</section>	
+		
+	<section  align="left">
+		<h3>Network models</h3>
+		<p>Network models are important for several reasons:</p>
+		
+		<ol>
+			<li>Interesting to study in their own right</li><br>
+			<li>Provide <em>null models</em> with which to compare results for real-world networks - 
+			a bit like the normal distribution in statistics</li><br>
+			<li>Study the effect of network structure on dynamics (synchrony in neural networks for example)</li>
+		</ol>
+					
+	</section>
+
+
+	<section align="left">
+	<h1 class="r-fit-text">Topics in Mathematical Biology L4</h1>
+	<br>
+	<ul>
+		<li>Network models</li>
+		<br>
+		<li style="color: #00FF00">ER random graphs</li>			
+		<br>
+		<li>Using generating functions to study ER networks</li>			
+	</ul>		
+	
+	</section>	
+	
+	<section>
+	
+		<section  align="left">				
+		<h3>Erdos-Renyi random graphs</h3>
+			
+		<p>Here we consider <em style="color:#00FF00">Erdos-Renyi (ER) random graphs</em>, which
+		are denited by $G(n,p)$</p>
+		
+		<p>Here, $G(n,p)$ is not a single graph but rather it is a collection of graphs</p>
+		\[
+		\begin{align*}
+			n &- \text{ number of nodes}\\
+			p &- \text{ probability that any 2 nodes are connected}
+		\end{align*}
+		\]
+		
+		<p>To construct an ER network we start off with a set of $n$ disconnected nodes
+		and connect pairs of nodes independently with probability $p$</p>
+		</section>
+		
+		<section  align="left">				
+			<p>As noted overpage, $G(n, p)$ denotes an ensemble of networks</p>
+			
+			<p>For example, $G(3, p)$ is given by</p>
+			<center>
+			<img style="margin:0px;padding:0px"				
+				height="400" src="figures/ERNets.png">
+			<p style="color: #00FF00">The respective probabilities of each graph are given below</p>		
+			</center>		
+		</section>
+		
+		
+		<section  align="left">				
+		<p>Below we list some of the most important properties of ER networks</p>
+			
+		<ol>
+			<li><p>The expected number of edges:</p> \[\langle m\rangle = \frac{n(n-1)p}{2}\]</center>				
+			</li><br>
+			<li>The expected degree: $\qquad\displaystyle \langle k\rangle = (n-1)p$</li><br>
+			
+			<li>The expected WS clustering coefficient: $\qquad\displaystyle \langle C\rangle = p$</li>		<br>						
+		</ol>
+			
+		<span class="fragment fade-in">
+			
+		<p><b>Note:</b> The third result follows since </p>
+		\[
+			\frac{\# \Delta\text{s}}{\# 2-\text{paths}}
+		\]
+		<p>is just the probability that a node's neighbours are connected</p>
+		
+		<p style="color:#00FF00">We shall return to these properties later</p>
+		</span>
+		</section>
+		
+		<section  align="left">				
+		<p>Note that as mentioned previously, ER networks are commonly used as null models</p>
+		
+		<p>For example, given a network $N=(V, E)$ such that $|V|=n$ we would say that the WS clustering 
+		is 'large' if</p>
+		
+		\[
+			\color{red}{\boxed{\color{white}{
+			\frac{\langle C\rangle}{\langle C_\mathrm{rand}\rangle} >> 1
+			}}}
+		\]
+		<p>Here $\displaystyle \langle C_\mathrm{rand}\rangle$ denotes the WS clustering coefficient averaged over a 
+		large number of ER networks with comparable statistics (<em>i.e.</em> $n$ nodes etc.)</p>
+		
+		<p class="fragment fade-in" style="color:#00FF00">In other words the real-world network has WS clustering 
+		much greater than expected</p>
+		</section>
+		
+	
+	</section>	
+	
+	<section>
+	
+		<section  align="left">				
+			<h3>Edge and degree distributions for ER networks</h3>
+			<p>Note that each network in $G(n,p)$ occurs with probability</p>
+			\[
+				P(G(n,p)) = p^m\left(1-p^{\frac{n(n-1)}{2}-m}\right) \qquad\left(\frac{n(n-1)}{2} \text{ is the number of links}\right)
+			\]
+			<p>The probability of an ER network having $m$ edges is</p>
+			\[
+				\color{red}{\boxed{\color{white}{
+				P(m) = \binom{\frac{n(n-1)}{2}}{m}p^m\left(1-p\right)^{\frac{n(n-1)}{2}-m}
+				}}}
+			\]
+			<p>The number of edges in an ER network follows a binomical distribution</p>
+			<p class="fragment fade-in" style="color:#00FF00">Property (1) of ER networks follows immediately from the above</p>
+		</section>
+		
+		<section  align="left">				
+		<p>Similar arguments show</p>
+		\[
+		\color{red}{\boxed{\color{white}{
+		 P(k) = \binom{n-1}{k}p^k\left(1-p\right)^{n-1-k}
+		 }}}
+		\]
+		<p>so that the <em>degree distribution</em> of an ER network follows a binomial distribution</p>
+		
+		<p>Since</p>
+		\[
+			k \sim\mathrm{Bi}(n-1,m)\implies \langle k\rangle = (n-1)p
+		\]
+		<p><em>i.e.</em> property (2)</p>
+		
+		<p>Now recall that for large $n$ and small $p$ the binomial distribution is well approximated by the
+		Poisson distribution ...</p>		
+		</section>
+		
+		<section  align="left">	
+		<p>To see this recall</p>
+		\[
+			\begin{align*}
+			\binom{n-1}{k}p^k\left(1-p\right)^{n-1-k} 
+			&=\frac{(n-1)(n-2)\cdots(n-k)}{k!}\left(\frac{\langle k\rangle}{n-1}\right)^k\left(1-\frac{\langle k\rangle}{n-1}\right)^{n-1-k}\\
+			&\approx \frac{\langle k\rangle^k}{k!}\left(1-\frac{\langle k\rangle}{n-1}\right)^{n-1}\\
+			&\approx \frac{\langle k\rangle^k}{k!}e^{-\langle k\rangle}			
+			\end{align*}			
+		\]
+		<p>Thus for large $n$: $\qquad\color{red}{\boxed{\color{white}{\displaystyle k\sim\mathrm{Po}(\langle k\rangle)}}}$</p>
+		
+		<span class="fragment fade-in">
+		<p>In the above we use the results:</p>
+		\[
+		\langle k \rangle = (n-1)p, \qquad n>>k \implies \frac{(n-1)(n-2)\cdots(n-k)}{(n-1)^k}\approx 1
+		\]
+		<p>and Euler's definition of the exponential function</p>
+		\[
+		 e^x = \lim_{n\to\infty} \left(1+\frac{x}{n}\right)^n
+		\]
+		</span>
+		</section>
+		
+	</section>	
+	
+	<section>
+	
+		<section  align="left">				
+			<h3>Python ER networks example</h3>
+		</section>
+		
+		<section  align="left">				
+		
+		</section>		
+		
+	</section>	
+			
+	<section align="left">
+	<h1 class="r-fit-text">Topics in Mathematical Biology L4</h1>
+	<br>
+	<ul>
+		<li>Network models</li>
+		<br>
+		<li>ER random graphs</li>			
+		<br>
+		<li style="color: #00FF00">Using generating functions to study ER networks</li>			
+	</ul>		
+	
+	</section>	
+	
+	<section>		
+		<section  align="left">					
+		<h3>Using generating functions to study ER networks</h3>
+		<p>Many properties of random networks can be easily understood via the use of 
+		<em style="color:#00FF00">generating functions</em></p>	
+		
+		<p>Given a discrete probability distribution $P(k)$ its generating function is given by</p>
+		\[
+			\color{red}{\boxed{\color{white}{
+			g(x) = \sum_{k=0}^\infty P(k)x^k
+			}}}
+		\]
+		<p>For our purposes ...</p>
+		</section>
+		
+		<section  align="left">					
+		<p>For our purposes the two most important properties of generating functions are the following</p>	
+		\[
+			\color{red}{\boxed{\color{white}{
+			\mathbb{E}[n] = \langle n\rangle = \left.\frac{\mathrm{d}g}{\mathrm{d}x}\right|_{x=1} = g'(1)
+			}}}
+		\]
+		<p>We can use this property to work out the mean properties of a random network</p>
+		\[
+			\color{red}{\boxed{\color{white}{
+			\begin{align*}
+			\mathrm{Var}[n] = \langle (k-\langle k\rangle)^2\rangle &= \left.\frac{\mathrm{d}^2g}{\mathrm{d}x^2}\right|_{x=1}
+			+\left.\frac{\mathrm{d}g}{\mathrm{d}x}\right|_{x=1}\left(1-\left.\frac{\mathrm{d}g}{\mathrm{d}x}\right|_{x=1}\right)\\
+			& \\&=g''(1)+g'(1)(1-g'(1))
+			\end{align*} 
+			}}}			
+		\]
+		<p>And the standard deviation of these properties</p>
+		</section>
+										
+	</section>
+	
+	<section>
+	
+		<section  align="left">	
+		<h3>Example 4.2</h3>	
+		<leftSide style="width:40%;text-align:center">
+		<img style="margin:0px;padding:0px"				
+			height="250" src="figures/Ex4p2.png">		
+		</leftSide>
+		
+		<rightSide style="width:60%;text-align:left">			
+		<p>The degree distribution is</p>
+		\[
+		p_0 = 0, ~p_1 = \frac{1}{4}, ~p_2 = \frac{1}{2}, ~p_3 = \frac{1}{4}, ~p_k = 0, ~k\geq 4
+		\]
+		<p>Thus the generating function is</p>
+		\[
+		 g(x)=\frac{x}{4} +\frac{x^2}{2} + \frac{x^3}{4}
+		\]		
+		</rightSide>
+		
+		<span class="fragment fade-in">
+		<p>Note that</p>
+		\[
+		\color{red}{\boxed{\color{white}{
+			g(1) = \frac{1}{4} + \frac{1}{2} + \frac{1}{4} = 1}}} \qquad \color{white}{\left(\sum_i p_i = 1~ \text{ \emph{i.e.} probability distribution}\right)}
+		\]
+		and
+		\[
+		\begin{align*}
+		g'(x) &= \frac{1}{4} +x + \frac{3}{4}x^2\\
+		g''(x)&= 1+\frac{3}{2}x
+		\end{align*}
+		\]
+		<font style="color:#00FF00">We need these to work out the mean and variance of the network degree</font>
+		</span>
+		
+			
+		</section>
+		
+		<section  align="left">	
+		<h3>Example 4.2 (ctd)</h3>	
+		<p>Since </p>
+		\[
+			\begin{align*}
+			g'(x) &= \frac{1}{4} +x + \frac{3}{4}x^2\\
+			g''(x)&= 1+\frac{3}{2}x
+			\end{align*}
+		\]	
+		<p>we have that</p>
+		\[
+		\langle k\rangle = g'(1) = \frac{1}{4} + 1 + \frac{3}{4}
+		\]
+		<span class="fragment fade-in">
+		<p>and</p>
+		\[
+		\begin{align*}
+		\mathrm{Var}(x) = \sigma^2_k&=g''(1)+g'(1)(1-g'(1))\\
+		&=1+\frac{3}{2}+2(1-2)\\
+		&= 0.5
+		\end{align*}
+		\]
+		<p style="color:#00FF00">Check this!</p>	
+		</span>
+		
+		<img style="margin:0px;padding:0px;position:absolute;top:100px;left:700px"				
+				height="175" src="figures/Ex4p2.png">
+		</section>	
+		
+		
+	</section>
+			
+	<section>
+		<h2 style="color:#00FF00">Lecture 4 Review</h2>
+		<br>				
+		<ul>						
+			<li>In this lecture we covered</li>
+				<ul>
+					<li>Network models</li>
+					<li>ER networks</li>																	
+					<li>Generating functions</li>
+				</ul><br>
+			<li>After this lecture you should</li>
+				<ul>
+					<li>Have an understanding of what an ER network is, and know how to compute basic statistics</li>						
+					<li>Be able to use generating functions to compute basic statistics for an ER network</li>					
+				</ul><br>					
+		</ul>			
+	</section>
+						
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+          <script src="plugin/math/math.js"></script>
+          <script>
+            Reveal.initialize({ plugins:[ RevealMath.KaTeX ] });
+          </script>
+</body>
+</html>
