@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+ <div class="reveal">
+    <div class="slides">
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<section>
+		 <h1 class="r-fit-text">Topics in Mathematical Biology</h1>
+		<h2>Lecture 6</h2>
+		<p style="font-size:48px; color: #00FF00">Jonathan Crofts</p>        
+		<p style="color: #00FF00">Nottingham Trent University</p>
+    </section>
+	  
+	<!-- ################################################### -->
+    <!-- ################################################### -->				
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L6</h1>
+		<br>
+		<ul>
+			<li style="color: #00FF00">The graph Laplacian</li>
+			<br>
+			<li>Graph partitioning and the Fiedler vector</li>			
+		</ul>		
+	</section>	
+	
+	<section>
+		<section  align="left">
+		<h3>The graph Laplacian</h3>
+		<p>An important network representation is that of the 
+		<em style="color:#00FF00">graph Laplacian</em>, which is defined as</p>			
+		\[
+		 L = D-A
+		\]
+		<p>where $D = \mathrm{diag}(k_1, k_2, \ldots, k_n)$ is the diagonal matrix of degrees</p>
+		
+		<span class="fragment fade-in">
+		<p>This matrix has many applications in network science the two main of which are</p>
+		
+		<ol>
+			<li>Spectral clustering</li><br>
+			<li>Synchrony in networks</li>
+		</ol>
+		<img style="margin:0px;padding:0px;position:absolute;top:425px;left:400px"				
+				height="175" src="figures/Synchrony.png">
+		<img style="margin:0px;padding:0px;position:absolute;top:375px;left:700px"				
+				height="175" src="figures/GraphCluster.jpg">
+		</span>		
+		</section>
+	
+		<section  align="left">				
+			<p>The graph Laplacian has the following important properties:</p>
+			<ol>
+				<li><p>For every vector $\mathbf{x}\in\mathbb{R}^n$ we have</p></li>
+				\[
+				\color{red}{\boxed{\color{white}{
+				 \mathbf{x}^TL\mathbf{x} = \frac{1}{2}\sum_{i,j=1}^na_{ij}(x_i-x_j)^2
+				 }}}
+				\]
+				<li class="fragment fade-in"><p>$L$ is symmetric and positive definite</p></li>
+				<li class="fragment fade-in"><p>The smallest eigenvalue of $L$ is zero and the corresponding eigenvector is
+				the vector of all ones $\begin{pmatrix}1, 1,\ldots, 1\end{pmatrix}^T$</p></li>
+				<li class="fragment fade-in"><p>The multiplicity of the 0 eigenvalue equals the number of connected components in the network</p></li>
+				<li class="fragment fade-in">$L$ has $n$ non-negative real-valued eigenvalues</li>
+				
+			</ol>
+		</section>
+	</section>
+	
+	<section>
+		<section  align="left">				
+			<p>Let us prove properties 1 and 3.</p>
+			
+			<h3>Proof (property 1)</h3>
+			\[
+				\begin{align*}
+				\mathbf{x}^TL\mathbf{x} &= \mathbf{x}^TD\mathbf{x} -\mathbf{x}^TA\mathbf{x}\\
+				&=\sum_{i=1}^nk_ix_i^2 - \sum_{i,j=1}^n x_ix_ja_{ij}\\
+				&=\frac{1}{2}\left(\sum_{i=1}^nk_ix_i^2 - 2\sum_{i,j=1}^nx_ix_ja_{ij} + \sum_{j=1}^nk_jx_j^2\right)\\
+				&= \frac{1}{2}\sum_{i,j=1}^na_{ij}\left(x_i-x_j\right)^2
+				\end{align*}
+			\]
+		</section>
+		
+		<section  align="left">				
+			<h3>Proof (property 3)</h3>
+			<p>Firstly note that</p>
+			\[
+				L\begin{pmatrix}1\\1\\\vdots\\1\end{pmatrix} = D\begin{pmatrix}1\\1\\\vdots\\1\end{pmatrix} 
+				-A\begin{pmatrix}1\\1\\\vdots\\1\end{pmatrix} = \begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{pmatrix}-
+				\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{pmatrix} = 0\cdot \begin{pmatrix}1\\1\\\vdots\\1\end{pmatrix}
+			\]
+			<p>To prove zero is the smallest eigenvalue we need the so-called <em style="color:#00FF00">oriented incidence matrix</em>
+			which is the $n\times m$ matrix such that</p>
+			\[
+				B_{i_1,j}=1 \qquad\text{and}\qquad B_{i_2,j}=-1
+			\]
+			<p>if nodes $v_{i_1}$ and $v_{i_2}$ are connected and zero everywhere else</p>
+		</section>
+		
+		<section  align="left">				
+		<p>For example we have that the incidence matrix of the toy network shown here is</p>
+		\[
+		 B = \begin{pmatrix}1&1\\-1&0\\0&-1\end{pmatrix}
+		\]
+		<p>Note that the columns denote edges and sum to zero</p>
+		
+		<p>Importantly it can be shown that the Laplacian matrix can be written in terms of the
+		oriented incidence matrix</p>
+		
+		<p>To see this, note that</p>
+		\[
+		 \left(BB^T\right)_{ij} = \sum_k B_{ik}B^T_{kj}
+		\]
+		
+		<img style="margin:0px;padding:0px;position:absolute;top:125px;left:700px"				
+				height="150" src="figures/ToyNetL6.png">
+		</section>
+		
+		<section  align="left">		
+		\[
+		\color{red}{\boxed{\color{white}{
+			\left(BB^T\right)_{ij} = \sum_k B_{ik}B^T_{kj}
+		 }}}
+		\]
+		<p>Now if $i$ and $j$ differ then either</p>
+		\[
+			\sum_k B_{ik}B_{jk} = 0
+		\]
+		<p>or</p>		
+		\[
+			\sum_k B_{ik}B_{jk} = -1 \qquad(i\sim j)
+		\]
+		<p style="color:#00FF00">i.e. the dot product of any two rows of $B$ is either 0 or 1</p>
+		<span class="fragment fade-in">
+		<p>For $i=j$ we count the number of edges incident to a node so that</p>
+		\[
+			\sum_k B_{ik}B_{jk} = k_i
+		\]
+		</span>
+		</section>
+		
+		<section  align="left">	
+		<p>To summarise</p>
+		\[
+		 \left(BB^T\right)_{ij} = L_{ij} = \begin{cases}
+		 -1&i\sim j\\ k_i&i=j\\0&\text{ otherwise.}\end{cases}
+		\]
+		<p><em>i.e.</em> the graph Laplacian</p>
+		
+		<span class="fragment fade-in">
+		<p>Now suppose that $\mathbf{v}_i$ is an eigenvetor of $L$ with eigenvalue $\lambda_i$</p>
+		
+		<p>Then</p>
+		\[
+		 \begin{align*}
+		 0\leq ||B^T\mathbf{v}_i||^2&=\mathbf{v}_i^TBB^T\mathbf{v}_i\\
+		 &=\mathbf{v}_i^TL\mathbf{v}_i\\
+		 &= \lambda_i\mathbf{v}_i^T\mathbf{v}= \lambda_i 
+		 \end{align*}
+		\]
+		<p>Since $L$ always has at least one eigenvalue equal to zero the result follows</p>
+		</span>
+		</section>
+	
+	</section>	
+			
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L6</h1>
+		<br>
+		<ul>
+			<li>The graph Laplacian</li>
+			<br>
+			<li style="color: #00FF00">Graph partitioning and the Fiedler vector</li>			
+		</ul>		
+	</section>	
+	
+	<section>		
+		<section  align="left">					
+		<h3>Graph partitioning</h3>
+		<ul>
+			<li>Note that the eigenvector corresponding to the second smallest eigenvalue (or more accurately the first non-zero eigenvalue) 
+			of the Laplacian matrix of a network $N$ is called the <em style="color:#00FF00">Fiedler vector</em></li><br>
+			<li>The Fiedler vector is particularly useful in spectral graph partitioning, whereby one wishes to 
+			partition a network into sets of nodes such that nodes in the same set are highly connected and nodes in 
+			different sets share only a few connections</li><br>
+			<li>These ideas are related to community detection in networks which we shall come back to later on in the course</li>
+		</ul>		
+			
+		</section>
+		
+		<section  align="left">					
+		<leftSide style="width:50%;text-align:left">
+		<img style="margin:0px;padding:0px"				
+			height="350" src="figures/GraphCluster.jpg">		
+		<center>
+		<p style="color:#00FF00">The network above shows a network that consists of three modules</p>
+		</center>
+			
+		</leftSide>
+		
+		<rightSide style="width:50%;text-align:left">			
+		<ul>
+		<li><p>We would like to have an automated way of determining modules in a network</p></li>
+		<li><p>This is a difficult problem and a current area of research in network science</p></li>
+		<li>Spectral clustering provides one such solution – there are others, as we shall see </li>
+		</ul>
+		</rightSide>
+					
+			
+		</section>
+										
+	</section>
+	
+	<section>
+	
+		<section  align="left">	
+		<h3>Example 6.1</h3>	
+		<font size="5">
+		<p>There would appear to be two communities (or modules) in the network example</p>
+		
+		<ul>
+			<li>Eigenvector corresponding to $\lambda_2$</li>
+			<li>$i$th entry denotes $i$th node</li>
+			<li>Nodes with the same sign are grouped together</li><br><br>
+		</ul>
+		</font>
+		<font size="3">
+		\[
+		 L = \begin{pmatrix}
+		 4&-1&0&0&0&0&0&0&-1&0&-1&-1\\
+		 -1&3&-1&0&0&0&0&0&0&-1&0&0\\
+		 0&-1&4&-1&-1&0&0&-1&0&0&0&0\\
+		 0&0&-1&2&-1&0&0&0&0&0&0&0\\
+		 0&0&-1&-1&4&-1&0&-1&0&0&0&0\\
+		 0&0&0&0&-1&3&-1&-1&0&0&0&0\\
+		 0&0&0&0&0&-1&2&-1&0&0&0&0\\
+		 0&0&-1&0&-1&-1&-1&5&-1&0&0&0\\
+		 -1&0&0&0&0&0&0&-1&3&-1&0&0\\
+		 0&-1&0&0&0&0&0&0&-1&3&-1&0\\
+		 -1&0&0&0&0&0&0&0&0&-1&2&0\\
+		 -1&0&0&0&0&0&0&0&0&0&0&1
+		 \end{pmatrix} \quad \text{and} \quad 
+		 \color{red}{\boxed{\color{white}{
+		 \mathbf{v} = 
+		 \begin{pmatrix}
+		 -0.3038\\-0.1341\\0.1808\\0.2882\\0.2797\\0.3206\\
+		 0.3363\\0.2169\\-0.1202\\-0.2253\\-0.3311\\-0.5080
+		 \end{pmatrix}}}}
+		\]
+		</font>
+			
+		<img style="margin:0px;padding:0px;position:absolute;top:135px;left:625px"				
+				height="150" src="figures/Ex6p1_Network.png">	
+		</section>
+		
+		<section  align="left" data-transition="fade">	
+		<h3>Example 6.1 (ctd)</h3>	
+		<p>This partition can be clearly seen by plotting the sorted eigenvector</p>	
+		
+		<leftSide style="width:70%;text-align:left">
+		<ul>
+			<li>A large gap in the plot of the Fielder vector is indicative of a partitioning of the nodes into different modules</li><br>
+			<li><p>In our example the division into two sets </p>
+			\[
+			 V_1 = \{3,4,5,6,7,8\} ~\text{ and }~ V_2 =\{1,2,9,10,11,12\} 
+			\]</li><br>
+			<li>Further subdivisions can be obtained by applying the same technique to the Laplacian of the subnetworks that result from this partition</li>
+		</ul>		
+		</leftSide>
+		
+		<rightSide style="width:30%;text-align:right">
+		<img style="margin:0px;padding:0px"				
+			height="375" src="figures/Ex6p1_Clustering.png">		
+		</rightSide>
+		</section>			
+		
+	</section>
+	
+	
+	<section align="left">
+	<h3>Modularity in biological networks</h3>
+	<p>Note that determining communities or modules in biological networks is 
+	an important challenge</p>		
+	
+	<ul>
+		<li>Cortical networks - modules consist of functionally related brain areas 
+		(visual, motor etc.)</li><br>
+		<li>Protein-protein interaction networks - modules represent groups of proteins taking part in specific,
+		separable functions such as metabolic pathways or protein complexes</li><br>
+		<li>Metabolic networks - modules can identify core pathways</li>
+	</ul>
+			
+	</section>
+			
+	<section>
+		<h2 style="color:#00FF00">Lecture 3 Review</h2>
+		<br>				
+		<ul>						
+			<li>In this lecture we covered</li>
+				<ul>
+					<li>The graph Laplacian</li>
+					<li>Graph partitioning and the Fiedler vector</li>																	
+				</ul><br>
+			<li>After this lecture you should</li>
+				<ul>
+					<li>Know the most important properties of the graph Laplacian</li>						
+					<li>Be able to use the graph Laplacian to perform graph partitioning</li>					
+				</ul><br>					
+		</ul>			
+	</section>
+						
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+          <script src="plugin/math/math.js"></script>
+          <script>
+            Reveal.initialize({ plugins:[ RevealMath.KaTeX ] });
+          </script>
+</body>
+</html>
