@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+ <div class="reveal">
+    <div class="slides">
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<section>
+		 <h1 class="r-fit-text">Topics in Mathematical Biology</h1>
+		<h2>Lecture 7</h2>
+		<p style="font-size:48px; color: #00FF00">Jonathan Crofts</p>        
+		<p style="color: #00FF00">Nottingham Trent University</p>
+    </section>
+	  
+	<!-- ################################################### -->
+    <!-- ################################################### -->				
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L7</h1>
+		<br>
+		<ul>
+			<li style="color: #00FF00">Network modularity</li></span>
+			<br>
+			<li>Examples</li>			
+		</ul>		
+	</section>	
+	
+	
+	<section  align="left">
+	<h3>Network modularity</h3>
+	<ul>
+		<li>Community detection algorithms provides another method for determining modular structure in networks</li><br>
+		<li>Recall that a module, or community, is a set of densely connected nodes that have very few connections with the remainder of the network.</li><br>
+		<li> Modules are related to function in biology and so their determination is important</li><br>
+		<li>There are many such algorithms but we shall focus on the most famous one, the so-called <em style="color:#00FF00">Newman-Girvan modularity</em></li>
+	</ul>				
+	</section>
+	
+	<section>
+		<section  align="left">
+		<h3>Newman-Girvan modularity</h3>	
+		<p>Given a partitioning of the node set $V$, <em>i.e.</em>a collection of sets</p>
+		\[
+			\left\{V_1, V_2, \ldots, V_{n_p}\right\}
+		\]
+		<p>such that </p>
+		\[
+			V_i\cap V_j = \varnothing \quad\text{and}\quad \bigcup_i V_i = V
+		\]
+		<span class="fragment fade-in">
+		<p>The <em style="color:#00FF00">Newman-Girvan modularity score</em> is given by</p>
+		\[
+		\color{red}{\boxed{\color{white}{
+			Q = \frac{1}{2m}\sum_{r=1}^{n_p}\sum_{j=1}^n\left(a_{ij}-\frac{k_ik_j}{2m}\right)s_{ir}s_{jr}
+			}}}
+		\]
+		<font size="5">
+		<p>Here</p>
+		<ul>
+			<li>$n_p$ is the number of sets</li>
+			<li>$k_i$ is the degree of node $i$</li>
+			<li>$s_{ir}$ equals one if node $i\in V_r$ and is otherwise zero</li>
+		</ul>
+		</font>
+		</span>
+		</section>
+	</section>
+	
+	<section>	
+		<section  align="left">				
+		\[
+		\color{red}{\boxed{\color{white}{
+			Q = \frac{1}{2m}\sum_{r=1}^{n_p}\sum_{j=1}^n\left(a_{ij}-\frac{k_ik_j}{2m}\right)s_{ir}s_{jr}
+			}}}
+		\]
+		<p>It is worth noting that in the above measure the term</p>
+		\[
+			a_{ij} - \frac{k_ik_j}{2m}
+		\]
+		<p>is the result of comparing the network 𝑁 of interest against a random network - <em>i.e.</em> 
+		is the observed modularity structure likely to have arisen by chance</p>
+		
+		<p>The ratio $k_ik_j/2m$ gives the probability that nodes $i$ and $j$
+		are connected in the random graph model (the so-called <em style="color:#00FF00">configuration model</em>
+		as opposed to the ER model)</p>		
+		</section>
+		
+		<section  align="left">	
+		<h3>Note</h3>
+		<p>The configuration model is a random graph model that creates a graph with a specified degree distribution</p>
+		\[
+		 \left\{k_1, k_2, \ldots, k_n\right\}
+		\]
+		<p>Assume that $k_1\geq k_2\geq \cdots k_1\geq0$. Assign 'half-stubs' to $n$ nodes. (See figure.)</p>
+		
+		<p>The algorithm for creating a random network is:</p>
+		<ol>
+			<li>Join any two stubs uniformly at random</li>
+			<li>Repeat until no stubs are left</li>
+		</ol>	
+			
+		<p style="color:#00FF00">The resulting network is a random network with matched degree distribution</p>	
+		
+		<img style="margin:0px;padding:0px;position:absolute;top:300px;left:650px"				
+				height="125" src="figures/Stubs.png">
+		</section>
+
+	</section>	
+	
+	<section>	
+		<section  align="left">	
+		<p>It is sometimes useful to rewrite the NG score as follows</p>
+		\[
+		\begin{align*}
+		Q&=\frac{1}{2m}\sum_{r=1}^{n_p}\sum_{j=1}^n\left(a_{ij}-\frac{k_ik_j}{2m}\right)s_{ir}s_{jr}\\
+		&=\sum_r\left[\frac{1}{2m}\sum_{i,j=1}^na_{ij}s_{ir}s_{jr}-\frac{1}{2m}\sum_{i=1}^nk_is_{ir}\frac{1}{2m}\sum_{j=1}^nk_js_{jr}\right]\\
+		&=\sum_{r=1}^{n_p}\left[\frac{|E_r|}{m}-\frac{1}{4m^2}\left(\sum_{j\in V_r}k_j\right)^2\right]\\
+		&= \sum_{r=1}^{n_p}\left(e_{rr}-a_r^2\right)
+		\end{align*}
+		\]
+		</section>
+		<section  align="left">	
+		<p>This form of the Newman-Girvan modularity can prove useful</p>
+		\[
+		\color{red}{\boxed{\color{white}{
+			Q = \sum_{r=1}^{n_p}\left(e_{rr}-a_r^2\right)}}}
+		\]
+		<p>Here</p>
+		\[
+			e_{rr} = \frac{|\left\{(u,v): u,v\in V_r, (u,v)\in E\right\}|}{|E|}
+		\]
+		<p>and </p>
+		\[
+			a_r = \frac{\left\{(u,v): u\in V_r, (u,v)\in E\right\}}{|E|}
+		\]
+		
+		<span class="fragment fade-in">
+		<p>In words: </p>
+		<ul>
+			<li>$e_{rr} -$ the probability an edge lies in module $r$</li>
+			<li>$a_r -$ the probability a random edge has a vertex in module $r$</li>
+		</ul>
+		</span>
+		</section>
+	</section>	
+		
+	<section align="left">
+	<p>In practice we use the following form to compute the Newman-Girvan modularity</p>
+	\[
+	\color{red}{\boxed{\color{white}{
+		Q = \sum_{r=1}^{n_p}\left[\frac{|E_r|}{m}-\frac{1}{4m^2}\left(\sum_{j\in V_r}k_j\right)^2\right]
+		}}}
+	\]
+	<p>Here</p>
+	<ul>
+		<li>$|E_r|$ counts the number of edges in module $r$</li>
+		<li>$n_p$ is the number of modules</li>
+		<li>And $m$ and $k_i$ denote the number of edges and network degree as usual</li>
+	</ul>
+	</section>	
+			
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L7</h1>
+		<br>
+		<ul>
+			<li>Network modularity</li></span>
+			<br>
+			<li style="color: #00FF00">Examples</li>			
+		</ul>		
+	</section>	
+	
+	<section>		
+		<section  align="left">					
+		<h3>Example 7.1</h3>
+		<p>Compute the modularity for the partition</p>
+		\[
+		V_1 = \{1,2,9,10,11,12\}\quad\text{ and }\quad V_2 = \{3,4,5,6,7,8\}
+		\]
+		<p>of the network below</p>
+		
+		<center>
+		<img style="margin:0px;padding:0px"				
+				height="300" src="figures/Ex6p1_Network.png">
+				</center>
+			
+		</section>
+		
+		<section  align="left">					
+		<h3>Solution</h3>
+					
+			
+		</section>
+										
+	</section>
+	
+	<section>
+	
+		<section  align="left">	
+			<h3>Example 7.2</h3>	
+			<p>Consider a line graph consisting of $n$ nodes. Show that if we divide the network into two parts by cutting any single edge, 
+			such that one part has $r$ nodes and the other $n-r$, then the modularity takes the value</p>		
+			\[
+				Q = \frac{3-4n+4rn-4r^2}{2(n-1)^2}
+			\]
+			<h3>Solution</h3>
+		</section>
+		
+		<section  align="left" data-transition="fade">	
+			<h3>Solution (ctd)</h3>
+			
+			
+		</section>	
+		
+		<section  align="left" data-transition="fade">	
+			
+		</section>				
+		
+	</section>
+			
+	<section>
+		<h2 style="color:#00FF00">Lecture 7 Review</h2>
+		<br>				
+		<ul>						
+			<li>In this lecture we covered</li>
+				<ul>
+					<li>Network modularity</li>
+					<li>Examples</li>																	
+				</ul><br>
+			<li>After this lecture you should</li>
+				<ul>
+					<li>be able to explain the concept of network modularity, calculate modularity for a given network, and 
+					interpret how modularity reflects the strength of community structure within a network</li>						
+				</ul><br>					
+		</ul>			
+	</section>
+						
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+          <script src="plugin/math/math.js"></script>
+          <script>
+            Reveal.initialize({ plugins:[ RevealMath.MathJax3] });
+          </script>
+</body>
+</html>

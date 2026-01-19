@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+ <div class="reveal">
+    <div class="slides">
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<section>
+		 <h1 class="r-fit-text">Topics in Mathematical Biology</h1>
+		<h2>Lecture 8</h2>
+		<p style="font-size:48px; color: #00FF00">Jonathan Crofts</p>        
+		<p style="color: #00FF00">Nottingham Trent University</p>
+    </section>
+	  
+	<!-- ################################################### -->
+    <!-- ################################################### -->				
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L8</h1>
+		<br>
+		<ul>
+			<li style="color: #00FF00">Centrality measures</li></span>
+			<br>
+			<li>Examples</li>			
+		</ul>		
+	</section>	
+	
+	
+	<section  align="left">
+	<h3>Centrality measures</h3>
+	<p><em style="color:#00FF00">Centrality measures</em> provide a way to quantify a nodes 
+	'importance'</p>
+	<ul>
+		<li>Which brain regions should a new drug target? Which regions 
+		surgically removed to prevent epileptic seizures?</li><br>
+		<li>Which genes are under/over expressed in cancerous tissues? Etc. </li><br>
+		<li>Identifying key reactions (metabolites) controlling local 
+		information flow in directed reaction-centric graphs of microbial metabolic 
+		networks can contribute to our understanding of how metabolic pathways are 
+		assembled.</li>
+	</ul>
+		
+	<p style="color:#00FF00">We shall see a number of examples of such measures</p>
+					
+	</section>
+	
+	<section  align="left">				
+	<h3>Degree centrality</h3>
+	<p>The simplest measure of a node's importance is given
+	by the network degree</p>
+	
+	<p>Her a node $i$ is considered more important than node $j$ if</p>
+	\[
+		k_i > k_j
+	\]
+	where
+	\[
+	\color{red}{\boxed{\color{white}{
+		\begin{align*}
+		k_i &= \sum_{j}a_{ij}\\
+		&=\left(A\mathbb{1}\right)_i
+		\end{align*}
+		}}}
+	\]
+	
+	<p style="color:#00FF00">Degree centrality naturally extends to 
+	directed networks via the in- and out-degrees</p>
+	</section>
+	
+	<section>
+		<section  align="left">				
+		<h3>Eigenvector centrality</h3>
+		<p>A natural extension of the degree centrality is given by 
+		the so-called <em style="color:#00FF00">eigenvector centrality</em></p>
+		
+		<p>Here we quantify a nodes importance by considering its neighbours importance 
+		<em>i.e.</em> a node is important if it is connected to lots of important 
+		nodes</p>
+		
+		<p>Mathematically we say</p>
+		\[
+		\begin{align*}
+			e_i &= \frac{1}{\lambda}\sum_{j\in M(i)}e_j\\
+			&=\frac{1}{\lambda}\sum_{j}a_{ij}e_j
+		\end{align*}
+		\]
+		<p>$M(i)$ is the set of neighbours of node $i$</p>
+		
+		<p style="color:#00FF00"> The score $e_i$ of node $i$ is proportional to its neighbours scores</p> 
+
+		</section>
+		
+		<section  align="left">	
+		<p>We can rewrite the equation for eigenvector centrality using matrix-vector notation as </p>
+		\[
+		\begin{align*}
+		\begin{pmatrix}
+		e_1\\e_2\\\vdots\\e_n
+		\end{pmatrix} = \frac{1}{\lambda}
+		\begin{pmatrix}
+		a_{11}&\ldots&a_{1n}\\
+		\vdots&&\vdots\\
+		a_{n1}&\ldots&a_{nn}
+		\end{pmatrix}\begin{pmatrix}
+		e_1\\e_2\\\vdots\\e_n
+		\end{pmatrix}
+		\end{align*}
+		\]
+		<p>Or</p>
+		\[
+		\color{red}{\boxed{\color{white}{
+			A\mathbf{e} = \lambda_1 \mathbf{e}
+			}}}
+		\]
+		<p>Since we require $\mathbf{e}$ to have non-negative entries we choose the Perron-Frobenius eigenvector</p>
+		</section>
+	
+	</section>	
+	
+	<section>
+		<section  align="left">				
+		<h3>Katz centrality</h3>
+		<ul>
+			<li><p>We can also rank nodes according to their ability to 'communicate' 
+			with the rest of the network</p></li>
+			<li>Here communication is measured in terms of walks, <em>i.e.</em> nodes that 
+			are connected by lots of walks are considered more important</li>
+			<li><p>Recalling that $A^k$ counts the number of walks of length $k$ in the network 
+			motivates</p></li>
+			\[
+				\left(\alpha^0A^0 + \alpha^1A^1+\cdots+\alpha^kA^k+\cdots\right)\mathbb{1}
+			\]
+			<li><p>Note that</p>
+			\[
+				\left(A^k\mathbb{1}\right)_i
+			\]
+			<p>counts the number of walks of length $k$ from node $i$ to all other nodes</p>
+			</li>
+		</ul>
+		</section>
+		
+		<section  align="left">
+		<p>The series in brackets <em>i.e.</em></p>		
+		\[
+			\alpha^0A^0 + \alpha^1A^1+\cdots+\alpha^kA^k+\cdots
+		\]
+		<p>converges if $\alpha\in (0, 1/\rho(A))$, where $\rho(A)$ denotes the spectral
+		radius</p>
+		
+		<p>Thus for $\alpha\in (0, 1/\rho(A))$ we can write</p>
+		\[
+			\sum_{k=0}^\infty \alpha^kA^k = \left(I-\alpha A\right)^{-1}
+		\]
+		<p>Which results in the so-called <em style="color:#00FF00">Katz centrality measure</em>:</p>
+		\[
+		\color{red}{\boxed{\color{white}{
+		\begin{align*}
+		K_i&=\left[\left(\sum_{k=0}^\infty \alpha^kA^k\right)\mathbb{1} \right]_i\\
+		&=\left[\left(I-\alpha A\right)^{-1}\mathbb{1}\right]_i
+		\end{align*}
+		}}}
+		\]
+		</section>
+	
+	</section>	
+	
+	<section>
+		<section  align="left">				
+		<h3>Betweenness centrality</h3>
+		<ul>
+			<li>The final centrality measure we shall consider is the so-called 
+			<em style="color:#00FF00">betweenness centrality</em></li>
+			<li><p>This measure differs in that the most 'important' node is not 
+			necessarily the one that is most 'connected' at least in the traditional sense</p></li>
+			
+			<center>
+			<img style="margin:0px;padding:0px"				
+			height="150"					
+			src="figures/Betweenness.png">
+			</center>
+			
+			<li><p>This idea is illustrated in the above figure - from a BC point of view 
+			node $A$ is the most important, as we shall see…</p></li>
+		</ul>
+		</section>
+		
+		<section  align="left">				
+		<p>Betweenness centrality is defined as follows</p>
+		\[
+		\color{red}{\boxed{\color{white}{
+			B_i = \sum_{s\ne t\neq i}\frac{n^i_{st}}{g_{st}}
+			}}}
+		\]
+		
+		<p>Here</p>
+		\[
+		\begin{align*}
+			n^i_{st} &- \quad \# \text{ shortest paths between $s, t$ passing through $i$}\\
+			g_{st} &- \quad \# \text{ shortest paths between $s, t$}
+		\end{align*}
+		\]
+		<p>and $B_i$ denotes the score of node $i$</p>
+		</section>
+	
+	</section>	
+			
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L8</h1>
+		<br>
+		<ul>
+			<li>Centrality measures</li></span>
+			<br>
+			<li style="color: #00FF00">Examples</li>			
+		</ul>		
+	</section>
+	
+	<section>		
+		<section  align="left">					
+		<h3>Example 8.1</h3>
+		<p>Compute the Katz centrality of the network</p>	
+		<center>
+		<img style="margin:0px;padding:0px"				
+			height="200"				
+			src="figures/Ex8p1.png">
+		</center>
+		<h3>Solution</h3>
+		<p>The determinant of $A$ is given by ...</p>		
+			
+		</section>
+		
+		<section  align="left">		
+		<font size="4">
+		\[
+		\begin{align*}
+		\left(I-\alpha A\right)^{-1}&=\frac{1}{|A|}
+		\begin{pmatrix}
+		1-4\alpha^2&\alpha-2\alpha^3&\alpha^2&\alpha^2&2\alpha^3\\
+		\alpha-2\alpha^3&1-2\alpha^2&\alpha&\alpha&2\alpha^2\\
+		\alpha^2&\alpha&\alpha^4-3\alpha^2+1&2\alpha^2-\alpha^4&\alpha-\alpha^3\\
+		\alpha^2&\alpha&2\alpha^2-\alpha^4&\alpha^4-3\alpha^2+1&\alpha-\alpha^3\\
+		2\alpha^3&2\alpha^2&\alpha-\alpha^3&\alpha-\alpha^3&1-\alpha^2
+		\end{pmatrix}
+		\begin{pmatrix}1\\1\\1\\1\\1\\\end{pmatrix}\\
+		&=\frac{1}{2\alpha^4-5\alpha^2+1}
+		\begin{pmatrix}1+\alpha-2\alpha^2\\1+3\alpha-2\alpha^3\\
+		1+2\alpha-\alpha^3\\1+2\alpha-\alpha^3\\1+2\alpha-\alpha^2\end{pmatrix}
+		\end{align*}
+		\]<br><br>		
+		</font>
+		
+		<leftSide style="width:60%;text-align:left">
+		<ul>
+			<li>The plot shows the four different scores</li><br>
+			<li>The ranked order is constant <em>i.e.</em> independent of $\alpha$</li>
+		</ul>
+		</leftSide>
+		
+		<rightSide style="width:40%;text-align:right">			
+		<img style="margin:0px;padding:0px"				
+			height="250" src="figures/Ex8p1_Katz.png">		
+		</rightSide>
+		</section>
+										
+	</section>
+	
+	<section  align="left">	
+	<h3>Example 8.2</h3>	
+	<p>Compute the Katz centrality of the network with adjacency matrix given below via matrix powers</p>
+	\[
+		A = \begin{pmatrix}0&0&0&0\\1&0&0&0\\0&1&0&0\\1&0&1&0\end{pmatrix}
+	\]
+	
+	<h3>Solution</h3>
+	</section>
+	
+	<section  align="left">	
+	<h3>Example 8.3</h3>	
+	<p>Compute the betweenness centrality of the network</p>	
+	<center>
+	<img style="margin:0px;padding:0px"				
+		height="200"				
+		src="figures/Ex8p1.png">
+	</center>
+	
+	<h3>Solution</h3>
+			
+	</section>
+	
+	<section>
+	
+		<section  align="left">	
+		<h3>Example 8.4</h3>	
+		<p>In this example we consider a parcellation of the Macaque monkey brain</p><br>
+		
+		<leftSide style="width:50%;text-align:center">
+		<ul>
+			<li>Nodes denote cortical regions</li><br>
+			<li>Edges white matter bundles</li><br>
+			<li>Figure shows a representation</li><br>
+		</ul>
+		</leftSide>
+		
+		<rightSide style="width:50%;text-align:center">
+		
+		
+		<img height="500" style="margin:0px;padding:0px"				
+				 src="figures/Macaque.png">
+				 
+				 </rightSide>
+		</section>
+		
+		<section  align="left">	
+		<img height="500" style="margin:0px;padding:10px"				
+				 src="figures/MacaqueCentrality.png">	
+		<ul>
+			<li><p>Here we display the results of computing three different 
+			centrality measures for the macaque network</p></li>
+			<li>Nodes are ordered by EC scores (red)</li>
+		</ul>		
+			
+		</section>			
+		
+	</section>
+			
+	<section>
+		<h2 style="color:#00FF00">Lecture 8 Review</h2>
+		<br>				
+		<ul>						
+			<li>In this lecture we covered</li>
+				<ul>
+					<li>Centrality measures</li>
+					<li>Examples</li>																	
+				</ul><br>
+			<li>After this lecture you should</li>
+				<ul>
+					<li>be able to define and explain key centrality measures 
+					(degree, betweenness, closeness, and eigenvector)</li>
+					<li>compute these measures for nodes in a network, and interpret 
+					their significance in identifying influential nodes within different 
+					network contexts.</li>						
+					
+				</ul><br>					
+		</ul>			
+	</section>
+						
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+    <script src="plugin/math/math.js"></script>	
+    <script>
+		Reveal.initialize({ 
+			plugins:[ RevealMath.MathJax3] 			
+		});
+    </script>
+</body>
+</html>

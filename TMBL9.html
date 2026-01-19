@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+ <div class="reveal">
+    <div class="slides">
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<!-- ################################################### -->
+	<section>
+		 <h1 class="r-fit-text">Topics in Mathematical Biology</h1>
+		<h2>Lecture 9</h2>
+		<p style="font-size:48px; color: #00FF00">Jonathan Crofts</p>        
+		<p style="color: #00FF00">Nottingham Trent University</p>
+    </section>
+	  
+	<!-- ################################################### -->
+    <!-- ################################################### -->				
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L9</h1>
+		<br>
+		<ul>
+			<li style="color: #00FF00">Recap on centrality measures</li></span>
+			<br>
+			<li>Centrality on directed networks</li>			
+			<br>
+			<li>Googles' PageRank as a centrality measure</li>			
+		</ul>		
+	</section>	
+	
+	<section  align="left">
+	<h3>Recap on centrality measures</h3>
+	<p>In the last lecture we introduced the notion of <em style="color:#00FF00">network centrality</em></p>
+	
+	<p>Here, the idea is to rank a network’s nodes in terms of their 'importance'</p>
+	
+	<span class="fragment fade-in">
+	<p>A quick recap</p>
+	<ul>
+		<li>Degree centrality</li>
+		<li class="fragment fade-in">Eigenvector centrality</li>
+		<li class="fragment fade-in">Katz centrality</li>
+		<li class="fragment fade-in">Betweenness centrality</li>
+	</ul>
+	
+	<p style="color:#00FF00">This list is not exhaustive...</p>
+	</span>
+	</section>
+	
+	<section align="left">
+		<h1 class="r-fit-text">Topics in Mathematical Biology L9</h1>
+		<br>
+		<ul>
+			<li>Recap on centrality measures</li></span>
+			<br>
+			<li style="color: #00FF00">Centrality on directed networks</li>			
+			<br>
+			<li>Googles' PageRank as a centrality measure</li>			
+		</ul>		
+	</section>
+	
+	<section  align="left">
+	<h3>Centrality on directed networks</h3>
+	<p>In the case of directed networks we can distinguish two types of nodes</p>
+	<ul>
+		<li><p><em style="color:#00FF00">Hub nodes</em> -  a node with a high in-degree</p></li>
+		<li><p><em style="color:#00FF00">Authority nodes</em> - a node with a high out degree</p></li>
+	</ul>
+	<p class="fragment fade-in">Consider, for example, eigenvector or Katz centrality applied to a directed network. 
+	Inputting $A$ detects hub nodes whilst inputting $A^T$ detects authority nodes.</p>
+
+	</section>
+	
+	<section>
+		<section  align="left">
+		<h3>Example 9.1</h3>
+		<p>Consider the adjacency matrix</p>
+		\[
+			A = \begin{pmatrix}0&1&0&0\\1&0&1&0\\
+			0&0&0&0\\0&1&0&0
+			\end{pmatrix}
+		\]
+		<p>By computing the Katz centrality for both $A$ and $A^T$
+		determine two different rankings of the network nodes</p>
+		
+		<h3>Solution</h3>
+		</section>
+	
+		<section  align="left">				
+			
+		</section>
+		
+		<section  align="left">				
+			
+		</section>
+		
+
+	</section>	
+	
+	
+	<section align="left">
+	<h1 class="r-fit-text">Topics in Mathematical Biology L9</h1>
+	<br>
+	<ul>
+		<li>Recap on centrality measures</li></span>
+		<br>
+		<li>Centrality on directed networks</li>			
+		<br>
+		<li style="color: #00FF00">Googles' PageRank as a centrality measure</li>			
+	</ul>		
+	</section>	
+	
+	<section align="left">
+	<h3>Google's PageRank</h3>
+	<ul>
+		<li><em style="color:#00FF00">PageRank</em> is the algorithm with which Google ranks webpages</li>
+		<li>It considers the WWW as a massive (directed) network</li>
+		<ul>
+			<li>nodes are webpages</li>
+			<li>edges are hyperlinks between pages</li>
+		</ul>
+		<li><p>Mathematically, the ranking is given as the equilibrium solution of the Markov process that results by 
+		considering a random walk on the WWW graph</p></li>
+		<li>The <em>transition matrix</em> is given by</li>
+		\[
+		\color{red}{\boxed{\color{white}{
+			P = D^{-1}_\mathrm{out}A
+			}}}
+		\]
+	</ul>
+	<img style="margin:0px;padding:0px;position:absolute;top:350px;left:720px"				
+				height="250" src="figures/WWW.png">
+	</section>
+	
+	<section>
+		<section align="left">
+		<center>
+		<img style="margin:0px;padding:20px"				
+				height="150" src="figures/RW1.png">
+		<img style="margin:20px;padding:0px"				
+				height="150" src="figures/RW2.png">
+		<img style="margin:20px;padding:0px"				
+				height="150" src="figures/RW3.png">			
+		</center>
+		<ul>
+			<li><p>Probabilities are given by $1/k_i^\mathrm{out}$</p></li>
+			<li><p>For example suppose</p></li>
+			\[	
+				A = \begin{pmatrix}
+				0&1&0&1&0\\0&0&1&1&0\\0&1&0&1&0\\1&1&1&0&0\\0&0&0&1&0
+				\end{pmatrix}
+			\]
+			<li>then ...</li>
+		</ul>
+		<img style="margin:0px;padding:0px;position:absolute;top:350px;left:650px"				
+				height="200" src="figures/RWExample.png">
+		</section>
+	
+		<section align="left">
+		<font size="5">
+		<ul>
+			<li>... the transition matrix is</li>
+			\[
+			\begin{align*}
+				P = D^{-1}_\mathrm{out}A &= \begin{pmatrix}
+				1/2&0&0&0&0\\0&1/2&0&0&0\\0&0&1/2&0&0\\0&0&0&1/3&0\\0&0&0&0&1
+				\end{pmatrix}\begin{pmatrix}
+				0&1&0&1&0\\0&0&1&1&0\\0&1&0&1&0\\1&1&1&0&0\\0&0&0&1&0
+				\end{pmatrix}\\
+				&= \begin{pmatrix}
+				0&1/2&0&1/2&0\\0&0&1/2&1/2&0\\0&1/2&0&1/2&0\\1/3&1/3&1/3&0&0\\0&0&0&1&0
+				\end{pmatrix}
+			\end{align*}		
+			\]
+			<li><p>So for example there is a 50:50 chance of moving from node 1 to either node 2 or 4</p></li>
+			<li><p>This follows since $p_{12}=p_{14}=1/2$</p></li>
+			<li><p>The matrix $P$ is <em style="color:#00FF00">row stochastic</em> since its rows sum to one</p></li>
+		</ul>
+		</font>
+		<img style="margin:0px;padding:0px;position:absolute;top:300px;left:675px"				
+				height="150" src="figures/RWExample.png">
+		</section>
+	
+		<section align="left">
+		<p>Unfortunately, the above set-up does not work in general since the matrix $P$
+		is not guaranteed to possess an equilibrium solution (dangling node issue)</p>
+	
+		<p>This led to the following related transition matrix</p>
+		\[
+		\color{red}{\boxed{\color{white}{
+			G = \frac{1-\alpha}{n}\mathbb{1}\mathbb{1}^T+\alpha D^{-1}_\mathrm{out}A
+			}}}
+		\]
+		<p>$G$ is the <em style="color:#00FF00">Google matrix</em></p>
+	
+		<span class="fragment fade-in">
+		<p>Here the term</p>
+		\[
+			\frac{1-\alpha}{n}\mathbb{1}\mathbb{1}^T = (1-\alpha)
+			\begin{pmatrix}\frac{1}{n}&\cdots&\frac{1}{n}\\\vdots&&\vdots\\
+			\frac{1}{n}&\cdots&\frac{1}{n}
+			\end{pmatrix}
+		\]		
+		<p>A proportion $\alpha$ of the time we follow the web structure and the for the remaining $1-\alpha$
+		of the time we teleport at random</p>
+		</span>
+		</section>
+	
+		<section align="left">
+		<font size="5.5">
+		<p>The PageRank vector $\mathbf{\pi}$ is given by</p>
+		\[
+		\color{red}{\boxed{\color{white}{
+			\mathbf{\pi}^T = \mathbf{\pi}^TG
+			}}}
+		\]
+		<p><em>i.e.</em> it is a left eigenvector of $G$</p>
+	
+		<span class="fragment fade-in">
+		<p><b>Note</b> the PageRank vector is closely related to the idea of Katz centrality</p>
+	
+		<p>To see this</p>
+		\[
+			\mathbf{\pi}^TG = \mathbf{\pi}^T\left(\frac{1-\alpha}{n}\mathbb{1}\mathbb{1}^T
+			+\alpha D^{-1}_\mathrm{out}A\right) 
+			= \mathbf{\pi}^T 
+		\]
+		<p>Transposing the above and rearranging for $\mathbf{\pi}$ gives</p>
+		\[
+		\begin{align*}
+			\mathbf{\pi} &= \frac{1-\alpha}{n}\left(I-\alpha A^TD^{-1}_\mathrm{out}\right)^{-1}\mathbb{1}\\
+			&=\beta \left(I-\alpha A^TD^{-1}_\mathrm{out}\right)^{-1}\mathbb{1}
+		\end{align*}
+		\]
+		</span>
+		<p class="fragment fade-in" style="color:#00FF00">This is just the formula for Katz with $A$ replaced by $A^TD^{-1}_\mathrm{out}$</p>
+		</font>
+		</section>
+	
+	</section>
+			
+	<section>
+		<h2 style="color:#00FF00">Lecture 9 Review</h2>
+		<br>				
+		<ul>						
+			<li>In this lecture we covered</li>
+				<ul>
+					<li>Recap on centrality measures</li>
+					<li>Centrality on directed networks</li>																	
+					<li>Google's PageRank as a centrality measure</li>
+				</ul><br>
+			<li>After this lecture you should</li>
+				<ul>
+					<li>be able to explain the differences between centrality measures in directed networks</li>						
+					<li>be able to explain the concept of Google’s PageRank algorithm, and describe how it 
+					relates to eigenvector centrality in network analysis</li>					
+				</ul><br>					
+		</ul>			
+	</section>
+						
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+          <script src="plugin/math/math.js"></script>
+          <script>
+            Reveal.initialize({ plugins:[ RevealMath.MathJax3] });
+          </script>
+</body>
+</html>
