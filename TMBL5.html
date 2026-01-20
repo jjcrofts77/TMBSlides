@@ -229,12 +229,13 @@
 		<boxTitle>
 		<h3>Definition 5.1</h3>
 		</boxTitle>			
-		<p>A square matrix with <em>non-negative</em> entries (<em>i.e.</em> $\displaystyle a_{ij}\geq 0$)
+		A square matrix with <em>non-negative</em> entries (<em>i.e.</em> $\displaystyle a_{ij}\geq 0$)
 		is called <b>irreducible</b> if for all pairs of indices $(i,j)$
-		there exists a positive integer $k(i,j)$ such that $\left(A^k\right)_{ij}>0$</p>		
+		there exists a positive integer $k(i,j)$ such that $\left(A^k\right)_{ij}>0$		
 		</textBox>	
 
 		<span class="fragment fade-in">
+		<font size="5">
 		<h3>Note</h3>
 		<ul>
 			<li>Recall that $\left(A^k\right)_{ij}$ counts the number of walks of length
@@ -242,13 +243,15 @@
 			<li>It follows that a network is (strongly) connected iff it is irreducible</li>
 			<li>If $A$ is <em style="color:#00FF00">reducible</em> then it can be permuted 
 			(nodes relabelled) into block diagonal form <em>i.e.</em></li>
+			
 			\[
 			 A = \begin{pmatrix}
 					B_1 &&&\\&B_2&&\\&&\ddots&\\&&&B_k
 				 \end{pmatrix}
-			\]
+			\]			
 		</ul>		
-		<p>Each block represents a component</p>
+		Each block represents a component
+		</font>
 		</span>
 		</section>
 										
@@ -271,23 +274,27 @@
 		</leftSide>
 		
 		<rightSide style="width:60%;text-align:left">	
-		<p></p>
+		<p></p><br>
+		<font size="4.5">
 		\[
 			A = \begin{pmatrix}
 			0&0&1&0&1\\0&0&0&1&0\\1&0&0&0&1\\0&1&0&0&0\\1&0&1&0&0
 			\end{pmatrix}
-		\]
+		\]		
 		<center>
 		<p>Block structure not evident</p><br></center>
+		</font>
 		
 		<span class="fragment fade-in" data-fragment-index="0">
+		<font size="4.5">
 		\[
 			A = \begin{pmatrix}
 			0&1&1&0&0\\1&0&1&0&0\\1&1&0&0&0\\0&0&0&0&1\\0&0&0&1&0
 			\end{pmatrix}
-		\]
+		\]		
 		<center>
 		<p style="color:#00FF00">Block structure evident after relabelling nodes</p>
+		</font>
 		</center>
 		</span>
 		</rightSide>

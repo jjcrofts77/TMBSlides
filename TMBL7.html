@@ -59,7 +59,8 @@
 	<section>
 		<section  align="left">
 		<h3>Newman-Girvan modularity</h3>	
-		<p>Given a partitioning of the node set $V$, <em>i.e.</em>a collection of sets</p>
+		<font size="5">
+		<p>Given a partitioning of the node set $V$, <em>i.e.</em> a collection of sets</p>
 		\[
 			\left\{V_1, V_2, \ldots, V_{n_p}\right\}
 		\]
@@ -67,14 +68,15 @@
 		\[
 			V_i\cap V_j = \varnothing \quad\text{and}\quad \bigcup_i V_i = V
 		\]
+		</font>
 		<span class="fragment fade-in">
+		<font size="5">
 		<p>The <em style="color:#00FF00">Newman-Girvan modularity score</em> is given by</p>
 		\[
 		\color{red}{\boxed{\color{white}{
 			Q = \frac{1}{2m}\sum_{r=1}^{n_p}\sum_{j=1}^n\left(a_{ij}-\frac{k_ik_j}{2m}\right)s_{ir}s_{jr}
 			}}}
-		\]
-		<font size="5">
+		\]		
 		<p>Here</p>
 		<ul>
 			<li>$n_p$ is the number of sets</li>
@@ -139,7 +141,9 @@
 		\end{align*}
 		\]
 		</section>
+		
 		<section  align="left">	
+		<font size="5">
 		<p>This form of the Newman-Girvan modularity can prove useful</p>
 		\[
 		\color{red}{\boxed{\color{white}{
@@ -153,13 +157,15 @@
 		\[
 			a_r = \frac{\left\{(u,v): u\in V_r, (u,v)\in E\right\}}{|E|}
 		\]
-		
+		</font>
 		<span class="fragment fade-in">
+		<font size="5">
 		<p>In words: </p>
 		<ul>
 			<li>$e_{rr} -$ the probability an edge lies in module $r$</li>
 			<li>$a_r -$ the probability a random edge has a vertex in module $r$</li>
 		</ul>
+		</font>
 		</span>
 		</section>
 	</section>	

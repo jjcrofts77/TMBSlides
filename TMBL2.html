@@ -73,6 +73,7 @@
 				<img data-src="figures/Ex2p1b.png"style="scale: 1; border: 5px solid #00FF00" class="center">								
 			</div>
 			<div>
+				<font>
 				<br>
 				\[
 				\begin{align*}
@@ -82,7 +83,7 @@
 				\end{align*}
 				\]
 				<p>This is an example of a <em>simple network</em></p>
-				<br><br><br>
+				<br>
 				\[
 				\begin{align*}
 				V_2 &= \{v_1, v_2, v_3, v_4\}\\									
@@ -92,6 +93,7 @@
 				\end{align*}
 				\]
 				<p>This network is <em>not</em> simple</p>
+				</font>
 			</div>
 		</div>
 	</section>
@@ -161,7 +163,7 @@
 				\[
 				k_i = 3 \forall i \implies \mathbf{k} = \begin{bmatrix}3&3&3&3\end{bmatrix}^T
 				\]
-				<br><br><br><br>
+				<br>
 				<p>This network is directed so we can compute two degree vectors</p>
 				\[
 				 \mathbf{k}^\mathrm{in} = \begin{bmatrix}2&2&2&2\end{bmatrix}^T
@@ -198,22 +200,22 @@
 	</section>
 		
 	<section  align="left">	
-		<p>Given the degree sequence (or vector) of a network we can compute its <em>degree distribution</em></p>
+		<font size="5">
+		<p>Given the degree sequence of a network we can compute the distribution of degrees</p>
 			
 		<h3>Example 2.3</h3>	
 			
 		Suppose we have the network
 			
 		\[
-			
+		V = \{v_1,v_2,v_3,v_4,v_5\}\quad \text{and}\quad E = \{(1,2),(1,4),(2,4),(3,4),(3,5),(4,5)\}	
 		\]
-			
-		<div class="twocolumn">
-			<div>
-				<img data-src="figures/Ex2p3.png"style="scale: 1;border: 5px solid #00FF00" class="center">					
-			</div>
-			<div>
 		
+		<leftSide style="width:30%;text-align:center">
+		<img data-src="figures/Ex2p3.png" style="scale: 1;border: 5px solid #00FF00" class="left">					
+		</leftSide>
+		
+		<rightSide style="width:70%;text-align:left">			
 			<p>Then</p>
 			\[
 			 p_0 = 0, p_1 = 0, p_2 = \frac{4}{5}, p_3=0, p_4=\frac{1}{5}, p_k=0 \text{ for } k\geq 5
@@ -221,11 +223,13 @@
 			<p>where $p_k$ gives the probability that a randomly chosen node will have degree $k$</p>
 					
 			<p>Note that $\{p_k\}$ is a probability distribution since $\displaystyle \sum_{k=0}^\infty p_k = 1$</p>
-								
-			</div>
-		</div>
-		<p> This distribution is known as the <strong>degree distribution</strong></p>
-				
+			
+			<p> This distribution is known as the <em style="color:#00FF00">degree distribution</em></p>
+		</rightSide>
+			
+	
+		
+		</font>		
 	</section>
 			
 	<section align="left">
@@ -285,18 +289,22 @@
 	<section>
 	
 		<section  align="left">	
-			<h3>Example 2.4</h3>	
+			<h3>Example 2.4</h3>
+			<font size="4">
 			<p>Let $N$ be the network with the adjacency matrix</p>
 			\[
 			A = \begin{bmatrix}0&1&0&1&0\\1&0&0&1&0\\0&0&0&1&1\\1&1&1&0&1\\0&0&1&1&0\end{bmatrix}
 			\]
-		
+			</font>
 			<span class="fragment fade-in">
+			<font size="4">
 			Then
 			\[
 			A^2 = \begin{bmatrix}2&1&1&1&1\\1&2&1&1&1\\1&1&2&1&1\\1&1&1&4&1\\1&1&1&1&2\end{bmatrix}\quad\text{and}
 			\quad A^3 = \begin{bmatrix}2&3&2&5&2\\3&2&2&5&2\\2&2&2&5&3\\5&5&5&4&5\\2&2&3&5&2\end{bmatrix}
 			\]
+			</font>
+			<font size="5.5">
 			and so
 			\[
 			\begin{align*}
@@ -305,6 +313,7 @@
 			\end{align*}
 			\]
 			</span>		
+			</font>
 		</section>
 		
 		<section  align="left" data-transition="fade">	
@@ -313,23 +322,23 @@
 			<p>Recall</p>
 			\[
 			\color{red}{\boxed{\color{white} {
-			\mathbf{k}=\begin{bmatrix}2&2&2&4&2\end{bmatrix}}}}\quad \color{white} {\text{and} \quad \mathrm{trace}\left(A^3\right) = \sum_{i=1}^5\left(A^3\right)_{ii} = 12}
+			\mathbf{k}=\begin{bmatrix}2&2&2&4&2\end{bmatrix}}}}\quad \color{white} {\text{and} \quad 
+			\mathrm{trace}\left(A^3\right) = \sum_{i=1}^5\left(A^3\right)_{ii} = 12}
 			\]
-			<br>
+			
 			<span class="fragment fade-in">
-			<div class="twocolumn">
-				<div>
-					<img data-src="figures/Ex2p4.png" style="scale: 1;border: 5px solid #00FF00" align="middle">										
-				</div>
-				<div>		
-					<br>
-					<ul>
-						<li>There are two closed walks of length 2 except at node 4</li><br>
-						<li>Node 4 contains 4 such walks</li><br>
-						<li>This agrees with our result</li>
-					</ul>					
-				</div>
-			</div>			
+			<leftSide style="width:35%;text-align:left">
+					<img data-src="figures/Ex2p4.png" style="scale: 0.8;border: 5px solid #00FF00" align="middle">										
+			</leftSide>
+		
+			<rightSide style="width:65%;text-align:left">	
+			<br><br>			
+			<ul>
+				<li>There are two closed walks of length 2 except at node 4</li><br>
+				<li>Node 4 contains 4 such walks</li><br>
+				<li>This agrees with our result</li>
+			</ul>					
+			</rightSide>	
 			</span>
 		</section>	
 		
@@ -341,21 +350,20 @@
 			
 			\mathbf{k}=\begin{bmatrix}2&2&2&4&2\end{bmatrix}\quad \text{and}\quad\color{red}{\boxed{\color{white}{ \mathrm{trace}\left(A^3\right) = \sum_{i=1}^5\left(A^3\right)_{ii} = 12}}}
 			\]
-			<br>			
-			<div class="twocolumn">
-				<div>
-					<img data-src="figures/Ex2p4_2.png" style="scale: 1;border: 5px solid #00FF00" align="middle">										
-				</div>
-				<div>		
-					<br>
-					<ul>
+			
+		<leftSide style="width:40%;text-align:left">
+		<img data-src="figures/Ex2p4_2.png" style="scale: 1;border: 5px solid #00FF00" align="left">
+		</leftSide>
+		
+		<rightSide style="width:60%;text-align:right">			
+			<ul>
 						<li>There are two closed walks of length 3 except at node 4</li><br>
 						<li>Node 4 contains 4 such walks</li><br>
 						<li>This agrees with our result (12/6 = 2 triangles)</li>
 					</ul>					
-					<img data-src="figures/triangle.png" style="scale: 1" align="middle">										
-				</div>
-			</div>						
+					<img data-src="figures/triangle.png" style="scale: .75" align="middle">										
+		</rightSide>
+									
 		</section>	
 		
 		<section align="left">
@@ -371,7 +379,7 @@
 					<ul>
 						<li>Since $A^2>0$ we can walk between any two nodes in the network in 2 steps</li><br>
 						<li>Again, this is clear from the picture</li><br>
-						<li>We say the network consists of a single <strong>connected component</strong></li>
+						<li>We say the network consists of a single <em style="color:#00FF00">connected component</em></li>
 					</ul>					
 				</div>
 			</div>			
@@ -390,7 +398,7 @@
 					<ul>
 						<li>A network is <b>strongly connected</b> if a directed walk exists between all nodes</li><br>
 						<li>If it is not possible to travel between any node pair via a directed walk, but it is possible if direction is ignored, then we
-						say that the network is <b>weakly connected</b></li><br>						
+						say that the network is <em style="color:#00FF00">weakly connected</em></li><br>						
 					</ul>			
 				</div>
 				<div>		
@@ -411,26 +419,31 @@
 				 V_1 = \left\{v_1, v_2, v_3, v_4, v_5\right\} \quad \text{and} \quad 	V_2 = \left\{ v_6, v_7, v_8\right\}
 				\]				
 				<span class="fragment fade">
-				<li>The first component is weakly connected and the second is strongly connected</li>				
+				<li>The first component is weakly connected and the second is <em style="color:#00FF00">strongly connected</em></li>				
 				<li>The network is disconnected</li></span>
 			</ul>			
 		</section>
 		
 		<section align="left">
+			<font size="5">
 			<p>Importantly, the adjacency matrix of a network consisting of multiple components is block diagonal</p>
 			\[
 			 A = \begin{bmatrix}A_1&&&\\&A_2&&\\&&\ddots&\\&&&A_q\end{bmatrix}
 			\]
 			<p>where each block represents a connected component</p>
-			
+			</font>
 			<span class="fragment fade-in">
+			<font size="5">
 			<p>The adjacency matrix for the example over page is:</p>
+			</font>
+			<font size="4.5">
 			\[
 			 A = \begin{bmatrix}0&1&0&0&0&&&\\0&0&0&0&0&&&\\0&0&0&0&0&&&\\1&1&1&0&0&&&\\0&0&0&1&0&&&\\&&&&&0&0&1\\&&&&&1&0&0\\&&&&&0&1&0\end{bmatrix} 
 			 = \begin{bmatrix}A_1&\\&A_2\end{bmatrix}
 			\]
 			<img data-src="figures/DissConn.png" style="scale: .5; position:absolute;top:200px;left:600px;" >										
 			</span>
+			</font>
 		</section>
 	</section>
 	

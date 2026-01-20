@@ -80,7 +80,7 @@
 		<h3>Erdos-Renyi random graphs</h3>
 			
 		<p>Here we consider <em style="color:#00FF00">Erdos-Renyi (ER) random graphs</em>, which
-		are denited by $G(n,p)$</p>
+		are denoted by $G(n,p)$</p>
 		
 		<p>Here, $G(n,p)$ is not a single graph but rather it is a collection of graphs</p>
 		\[
@@ -164,7 +164,7 @@
 				P(m) = \binom{\frac{n(n-1)}{2}}{m}p^m\left(1-p\right)^{\frac{n(n-1)}{2}-m}
 				}}}
 			\]
-			<p>The number of edges in an ER network follows a binomical distribution</p>
+			<p>The number of edges in an ER network follows a binomial distribution</p>
 			<p class="fragment fade-in" style="color:#00FF00">Property (1) of ER networks follows immediately from the above</p>
 		</section>
 		
@@ -254,7 +254,7 @@
 		</section>
 		
 		<section  align="left">					
-		<p>For our purposes the two most important properties of generating functions are the following</p>	
+		<p>... the two most important properties of generating functions are the following</p>	
 		\[
 			\color{red}{\boxed{\color{white}{
 			\mathbb{E}[n] = \langle n\rangle = \left.\frac{\mathrm{d}g}{\mathrm{d}x}\right|_{x=1} = g'(1)
@@ -284,7 +284,8 @@
 			height="250" src="figures/Ex4p2.png">		
 		</leftSide>
 		
-		<rightSide style="width:60%;text-align:left">			
+		<rightSide style="width:60%;text-align:left">	
+		<font size="4">	
 		<p>The degree distribution is</p>
 		\[
 		p_0 = 0, ~p_1 = \frac{1}{4}, ~p_2 = \frac{1}{2}, ~p_3 = \frac{1}{4}, ~p_k = 0, ~k\geq 4
@@ -294,12 +295,13 @@
 		 g(x)=\frac{x}{4} +\frac{x^2}{2} + \frac{x^3}{4}
 		\]		
 		</rightSide>
-		
+		</font>
 		<span class="fragment fade-in">
+		<font size="4">
 		<p>Note that</p>
 		\[
 		\color{red}{\boxed{\color{white}{
-			g(1) = \frac{1}{4} + \frac{1}{2} + \frac{1}{4} = 1}}} \qquad \color{white}{\left(\sum_i p_i = 1~ \text{ \emph{i.e.} probability distribution}\right)}
+			g(1) = \frac{1}{4} + \frac{1}{2} + \frac{1}{4} = 1}}} \qquad \color{white}{\left(\sum_i p_i = 1~ \text{i.e. probability distribution}\right)}
 		\]
 		and
 		\[
@@ -309,6 +311,7 @@
 		\end{align*}
 		\]
 		<font style="color:#00FF00">We need these to work out the mean and variance of the network degree</font>
+		</font>
 		</span>
 		
 			
@@ -316,6 +319,7 @@
 		
 		<section  align="left">	
 		<h3>Example 4.2 (ctd)</h3>	
+		<font size="5">
 		<p>Since </p>
 		\[
 			\begin{align*}
@@ -327,7 +331,9 @@
 		\[
 		\langle k\rangle = g'(1) = \frac{1}{4} + 1 + \frac{3}{4}
 		\]
+		</font>
 		<span class="fragment fade-in">
+		<font size="5">
 		<p>and</p>
 		\[
 		\begin{align*}
@@ -337,6 +343,7 @@
 		\end{align*}
 		\]
 		<p style="color:#00FF00">Check this!</p>	
+		</font>
 		</span>
 		
 		<img style="margin:0px;padding:0px;position:absolute;top:100px;left:700px"				

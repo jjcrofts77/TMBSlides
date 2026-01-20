@@ -57,7 +57,7 @@
 			<span class="fragment fade-in">
 			<li>Two historically important measures in network science are</li>
 			<ul>
-				<li>The <em style="color: #00FF00">average (or characteristic) path-length</em>:</li><br>
+				<li>The <em style="color: #00FF00">average (or characteristic) path-length</em>:</li>
 				\[
 				\color{red}{\boxed{\color{white}{
 				\langle l\rangle = \frac{1}{n(n-1)}\sum_{i,j}d(v_i,v_j)}}}
@@ -76,6 +76,7 @@
 		<section  align="left">				
 			<h3>Example 3.1</h3>
 			<p>The adjacency matrix is</p>
+			<font size="5">
 			\[
 				A = \begin{pmatrix}
 				0&1&0&1&0&0\\
@@ -86,7 +87,12 @@
 				0&0&1&0&1&0\\
 				\end{pmatrix}
 			\]
+			</font>
+			<img style="margin:0px;padding:0px;position:absolute;top:50px;left:825px"				
+				height="275" src="figures/Ex3p1aNetwork.png">
+			<span class="fragment fade-in">
 			<p>and the distance matrix is</p>
+			<font size="5">
 			\[
 			D = \begin{pmatrix}
 				0&1&2&1&2&3\\
@@ -97,10 +103,8 @@
 				3&3&1&2&1&0\\
 				\end{pmatrix}
 			\]	
+			</font>				
 		
-		<img style="margin:0px;padding:0px;position:absolute;top:50px;left:825px"				
-				height="275" src="figures/Ex3p1aNetwork.png">
-		<span class="fragment fade-in">
 		<p style="color:#00FF00">The diameter of this network is 3 and the average path-length is 1.6 (exercise)</p>	
 		<img style="margin:0px;padding:0px;position:absolute;top:400px;left:850px"				
 				height="200" src="figures/Ex3p1bNetwork.png">				
@@ -177,19 +181,21 @@
 		
 		<span class="fragment fade-in">
 		<h3>Example 3.2</h3>
+		<font size="4">
 		<p>Consider node 4 in the following networks</p>
 		<center>
-		<img style="margin:0px;padding:30px"				
+		<img style="margin:0px;padding:20px"				
 				height="150" src="figures/Triangles0.png">
-		<img style="margin:0px;padding:30px"				
+		<img style="margin:0px;padding:20px"				
 				height="150" src="figures/Triangles3.png">
-		<img style="margin:0px;padding:30px"				
+		<img style="margin:0px;padding:20px"				
 				height="150" src="figures/Triangles1.png">
 		\[
 		3\text{ possible; } 0\text{ triangles}\qquad 3\text{ possible; } 3\text{ triangles}\qquad
 		3\text{ possible; } 1\text{ triangles}
 		\]
 		</center>
+		</font>
 		</span>
 		</section>
 		
@@ -212,7 +218,7 @@
 			<center>
 			\[
 			\color{red}{\boxed{\color{white}{
-			\quad C_i = \frac{2t}{k_i(k_i-1)}\quad}}} \qquad \color{white}{\text{this is the \emph{local} Watts-Strogatz clustering}}
+			\quad C_i = \frac{2t}{k_i(k_i-1)}\quad}}} \qquad \color{white}{\text{this is the `local' Watts-Strogatz clustering}}
 			\]
 			</center>
 			</span>
@@ -227,7 +233,7 @@
 		<center>
 		\[
 			\color{red}{\boxed{\color{white}{
-			\quad \langle C\rangle = \frac{1}{n}\sum_{i=1}^n C_i\quad}}} \qquad \color{white}{\text{this is the \emph{global} Watts-Strogatz clustering}}
+			\quad \langle C\rangle = \frac{1}{n}\sum_{i=1}^n C_i\quad}}} \qquad \color{white}{\text{this is the `global' Watts-Strogatz clustering}}
 		\]
 		</center>
 		
@@ -252,7 +258,7 @@
 	
 	<section  align="left">					
 	<h3>Transitivity index</h3>
-	<font size="5">
+	<font size="4">
 	<p>Denote by</p>
 	\[
 		|P_2| - \text{ total $\#$ of two-paths in the network}
@@ -291,11 +297,12 @@
 			
 			<leftSide style="width:40%;text-align:center">			
 			<img style="margin:0px;padding:20px"				
-				height="350" src="figures/Ex3p3Network.png">
+				height="300" src="figures/Ex3p3Network.png">
 			</leftSide>
 			
 			<rightSide style="width:60%;text-align:center">				
 			<p>The adjacency matrix of which is</p>
+			<font size="4">
 			\[
 				A = \begin{pmatrix}
 					0&1&1&1&1&0&0&0\\
@@ -308,17 +315,19 @@
 					0&0&0&1&0&0&0&0\\
 					\end{pmatrix}
 			\]
+			</font>
 			<br>
 			<ol>
-				<li>Compute $C_i$ for each node and compute the global WS clustering coefficient</li><br>
+				<li><p>Compute $C_i$ for each node and compute the global WS clustering coefficient</p></li>
 				<li>Compute the transitivity index</li>
 			</ol>
 			</rightSide>
 			
 		</section>
 		
-		<section  align="left" data-transition="fade">	
+		<section  align="left">	
 		<h3>Solution</h3>
+		<font size="5">
 		<p>(1) Clearly, $C_5 = C_6 = C_7 = C_8 = 0$</p>
 			
 		<p>Also, </p>
@@ -340,6 +349,7 @@
 		\]
 		<p style="color:#00FF00">This is the global WS clustering coefficient</p>
 		</span>
+		</font>
 		<img style="margin:0px;padding:0px;position:absolute;top:100px;left:700px"				
 				height="275" src="figures/Ex3p3Network.png">
 		</section>	
