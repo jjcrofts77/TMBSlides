@@ -216,13 +216,121 @@
 	<section>
 	
 		<section  align="left">				
-			<h3>Python ER networks example</h3>
+		<h3>Python ER networks example</h3>
+		
+		<p style="color:#00FF00">The code describes how to sample and plot an ER network in Python</p>
+		
+		<pre><code data-trim data-noescape class="langauge-python">
+		import numpy as np
+		import networkx as nx
+		import matplotlib.pyplot as plt
+		from scipy.stats import binom, poisson
+
+		# ----------------------------------------------------------
+		# 1. Sample and plot ER networks for p = 0.01, 0.05, 0.1
+		# ----------------------------------------------------------
+
+		n = 1000
+		p_values = [0.01, 0.05, 0.1]
+
+		plt.figure(figsize=(14, 4))
+
+		for i, p in enumerate(p_values, 1):
+			G = nx.erdos_renyi_graph(n, p)
+   
+			plt.subplot(1, 3, i)
+			nx.draw_spring(G, node_size=15,
+						node_color="red",
+						edge_color="gray", alpha=0.05,
+						linewidths=0)
+			plt.title(f"ER Graph n={n}, p={p}")
+
+		plt.tight_layout()
+		Plt.show()
+
+		</code></pre>
+		
 		</section>
 		
-		<section  align="left">				
+		<section  align="left">	
+		<h3>Python ER networks example (ctd)</h3>		
+		<p style="color:#00FF00">Network configuration for varying $p$ and fixed $n=1000$</p>
+		<img style="margin:0px;padding:50px"				
+				height="275" src="figures/ERNetsVar_p.png">		
+		</section>
+		
+		<section  align="left">	
+		<h3>Python ER networks example (ctd)</h3>	
+		<pre><code data-trim data-noescape class="langauge-python">		
+		plt.figure(figsize=(14, 4))
+
+		for i, p in enumerate(p_values, 1):
+			G = nx.erdos_renyi_graph(n, p)
+			degrees = [d for _, d in G.degree()]
+   
+			plt.subplot(1, 3, i)
+			plt.hist(degrees, bins=30, density=True, alpha=0.7)
+			plt.title(f"Degree Distribution (n={n}, p={p})")
+			plt.xlabel("Degree")
+			plt.ylabel("Density")
+
+		plt.tight_layout()
+		Plt.show()
+		</code></pre>	
+
+		</section>	
+
+		<section  align="left">	
+		<h3>Python ER networks example (ctd)</h3>	
+		<p style="color:#00FF00">Degree distributions for the three ER networks displayed above</p>
+		<img style="margin:0px;padding:50px"				
+				height="300" src="figures/ERNetsVar_pHist.png">
+		</section>		
+		
+		<section  align="left">	
+		<h3>Python ER networks example (ctd)</h3>	
+		<pre><code data-trim data-noescape class="langauge-python">		
+		n = 1000
+		p = 0.1
+		lam = n * p
+
+		# Sample the graph
+		G = nx.erdos_renyi_graph(n, p)
+		degrees = np.array([d for _, d in G.degree()])
+
+		# Range of possible degrees
+		k_vals = np.arange(0, 200)
+
+		# Theoretical distributions
+		binom_pmf = binom.pmf(k_vals, n-1, p)
+		poisson_pmf = poisson.pmf(k_vals, lam)
+
+		plt.figure(figsize=(10, 6))
+
+		# Empirical histogram
+		plt.hist(degrees, bins=40, density=True, alpha=0.6, label="Empirical degree distribution")
+
+		# Binomial
+		plt.plot(k_vals, binom_pmf, 'r-', lw=2, label="Binomial(n−1, p)")
+
+		# Poisson
+		plt.plot(k_vals, poisson_pmf, 'g--', lw=2, label=f"Poisson(λ={lam})")
+
+		plt.xlabel("Degree")
+		plt.ylabel("Probability / Density")
+		plt.title("Degree Distribution for ER Graph (n=1000, p=0.1)")
+		plt.legend()
+		plt.show()
+		</code></pre>
 		
 		</section>		
 		
+		<section  align="left">	
+		<h3>Python ER networks example (ctd)</h3>	
+		<p style="color:#00FF00">Comparing empirical and theoretical degree distributions</p>	
+		<img style="margin:0px;padding:50px"				
+				height="400" src="figures/ERNetsBinPoiss.png">
+		</section>
 	</section>	
 			
 	<section align="left">
@@ -393,4 +501,5 @@
             Reveal.initialize({ plugins:[ RevealMath.MathJax3] });
           </script>
 </body>
+
 </html>
