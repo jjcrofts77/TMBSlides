@@ -365,14 +365,14 @@
 		<p>... the two most important properties of generating functions are the following</p>	
 		\[
 			\color{red}{\boxed{\color{white}{
-			\mathbb{E}[n] = \langle n\rangle = \left.\frac{\mathrm{d}g}{\mathrm{d}x}\right|_{x=1} = g'(1)
+			\mathbb{E}[k] = \langle n\rangle = \left.\frac{\mathrm{d}g}{\mathrm{d}x}\right|_{x=1} = g'(1)
 			}}}
 		\]
 		<p>We can use this property to work out the mean properties of a random network</p>
 		\[
 			\color{red}{\boxed{\color{white}{
 			\begin{align*}
-			\mathrm{Var}[n] = \langle (k-\langle k\rangle)^2\rangle &= \left.\frac{\mathrm{d}^2g}{\mathrm{d}x^2}\right|_{x=1}
+			\mathrm{Var}[k] = \langle (k-\langle k\rangle)^2\rangle &= \left.\frac{\mathrm{d}^2g}{\mathrm{d}x^2}\right|_{x=1}
 			+\left.\frac{\mathrm{d}g}{\mathrm{d}x}\right|_{x=1}\left(1-\left.\frac{\mathrm{d}g}{\mathrm{d}x}\right|_{x=1}\right)\\
 			& \\&=g''(1)+g'(1)(1-g'(1))
 			\end{align*} 
@@ -445,7 +445,7 @@
 		<p>and</p>
 		\[
 		\begin{align*}
-		\mathrm{Var}(x) = \sigma^2_k&=g''(1)+g'(1)(1-g'(1))\\
+		\mathrm{Var}(k) = \sigma^2_k&=g''(1)+g'(1)(1-g'(1))\\
 		&=1+\frac{3}{2}+2(1-2)\\
 		&= 0.5
 		\end{align*}
@@ -503,6 +503,7 @@
 </body>
 
 </html>
+
 
 
 
