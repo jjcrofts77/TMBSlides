@@ -378,16 +378,16 @@
 	\[
 	 \mathbf{x} = \begin{pmatrix}1,&1,&\ldots,&1\end{pmatrix}^T
 	\]
-	<p>is an eigenvector corresponding to the eigenvalue $\lambda=k$ and since
+	<p>is an eigenvector corresponding to the eigenvalue $\lambda_1=k$ and since
 	\[
-		|\lambda|\leq\Delta(N)
+		|\lambda_i|\leq\Delta(N)\quad \forall i
 	\]
 	<p>where $\Delta(N)$ denotes the maximum degree of the network ($k$ here)</p>
 	
 	<span class="fragment fade-in">
-	<p>To see this, suppose $x_j$ is the maximum entry of the eigenvector, then</p>
+	<p>To see this, suppose $x_j$ is the maximum entry of the eigenvector,$\mathbf{x}$,  then</p>
 	\[
-	 |\lambda_j x_j| = |\lambda_j||x_j| = |(Ax)_j|=\left|\sum a_{jk}x_k\right|\leq 
+	 |\lambda_i x_j| = |\lambda_i||x_j| = |(Ax)_j|=\left|\sum a_{jk}x_k\right|\leq 
 	 k_j|x_j|\leq\Delta(N)|x_j|
 	\]
 	</span>
@@ -443,3 +443,4 @@
 </body>
 
 </html>
+
