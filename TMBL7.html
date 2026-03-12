@@ -74,7 +74,7 @@
 		<p>The <em style="color:#00FF00">Newman-Girvan modularity score</em> is given by</p>
 		\[
 		\color{red}{\boxed{\color{white}{
-			Q = \frac{1}{2m}\sum_{r=1}^{n_p}\sum_{j=1}^n\left(a_{ij}-\frac{k_ik_j}{2m}\right)s_{ir}s_{jr}
+			Q = \frac{1}{2m}\sum_{r=1}^{n_p}\sum_{i,j=1}^n\left(a_{ij}-\frac{k_ik_j}{2m}\right)s_{ir}s_{jr}
 			}}}
 		\]		
 		<p>Here</p>
@@ -92,7 +92,7 @@
 		<section  align="left">				
 		\[
 		\color{red}{\boxed{\color{white}{
-			Q = \frac{1}{2m}\sum_{r=1}^{n_p}\sum_{j=1}^n\left(a_{ij}-\frac{k_ik_j}{2m}\right)s_{ir}s_{jr}
+			Q = \frac{1}{2m}\sum_{r=1}^{n_p}\sum_{i,j=1}^n\left(a_{ij}-\frac{k_ik_j}{2m}\right)s_{ir}s_{jr}
 			}}}
 		\]
 		<p>It is worth noting that in the above measure the term</p>
@@ -134,7 +134,7 @@
 		<p>It is sometimes useful to rewrite the NG score as follows</p>
 		\[
 		\begin{align*}
-		Q&=\frac{1}{2m}\sum_{r=1}^{n_p}\sum_{j=1}^n\left(a_{ij}-\frac{k_ik_j}{2m}\right)s_{ir}s_{jr}\\
+		Q&=\frac{1}{2m}\sum_{r=1}^{n_p}\sum_{i,j=1}^n\left(a_{ij}-\frac{k_ik_j}{2m}\right)s_{ir}s_{jr}\\
 		&=\sum_r\left[\frac{1}{2m}\sum_{i,j=1}^na_{ij}s_{ir}s_{jr}-\frac{1}{2m}\sum_{i=1}^nk_is_{ir}\frac{1}{2m}\sum_{j=1}^nk_js_{jr}\right]\\
 		&=\sum_{r=1}^{n_p}\left[\frac{|E_r|}{m}-\frac{1}{4m^2}\left(\sum_{j\in V_r}k_j\right)^2\right]\\
 		&= \sum_{r=1}^{n_p}\left(e_{rr}-a_r^2\right)
@@ -282,4 +282,5 @@
             Reveal.initialize({ plugins:[ RevealMath.MathJax3] });
           </script>
 </body>
+
 </html>
